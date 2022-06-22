@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "D88E5F19-E170-4756-A3F6-7D8B9E5E6C43",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:OpenWeatherMaps.xcodeproj",
+      "identifier" : "3A784FB92862C3330094FF63",
+      "name" : "OpenWeatherMaps"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:OpenWeatherMaps.xcodeproj",
+        "identifier" : "3A784FCF2862C3350094FF63",
+        "name" : "OpenWeatherMapsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:OpenWeatherMaps.xcodeproj",
+        "identifier" : "3A784FD92862C3350094FF63",
+        "name" : "OpenWeatherMapsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
