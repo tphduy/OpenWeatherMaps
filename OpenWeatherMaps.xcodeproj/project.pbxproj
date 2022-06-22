@@ -16,6 +16,7 @@
 		3A784FD52862C3350094FF63 /* OpenWeatherMapsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FD42862C3350094FF63 /* OpenWeatherMapsTests.swift */; };
 		3A784FDF2862C3350094FF63 /* OpenWeatherMapsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FDE2862C3350094FF63 /* OpenWeatherMapsUITests.swift */; };
 		3A784FE12862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FE02862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift */; };
+		3A784FF02862C6E10094FF63 /* WeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FEF2862C6E10094FF63 /* WeatherUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		3A784FDE2862C3350094FF63 /* OpenWeatherMapsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapsUITests.swift; sourceTree = "<group>"; };
 		3A784FE02862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A784FED2862C6630094FF63 /* OpenWeatherMaps.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = OpenWeatherMaps.xctestplan; sourceTree = "<group>"; };
+		3A784FEF2862C6E10094FF63 /* WeatherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		3A784FBC2862C3330094FF63 /* OpenWeatherMaps */ = {
 			isa = PBXGroup;
 			children = (
+				3A784FEE2862C6D20094FF63 /* UseCases */,
 				3A784FBD2862C3330094FF63 /* AppDelegate.swift */,
 				3A784FBF2862C3330094FF63 /* SceneDelegate.swift */,
 				3A784FC12862C3330094FF63 /* ViewController.swift */,
@@ -127,6 +130,22 @@
 				3A784FE02862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift */,
 			);
 			path = OpenWeatherMapsUITests;
+			sourceTree = "<group>";
+		};
+		3A784FEE2862C6D20094FF63 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				3A784FF12862CAC90094FF63 /* New Group */,
+				3A784FEF2862C6E10094FF63 /* WeatherUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		3A784FF12862CAC90094FF63 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A784FF02862C6E10094FF63 /* WeatherUseCase.swift in Sources */,
 				3A784FC22862C3330094FF63 /* ViewController.swift in Sources */,
 				3A784FBE2862C3330094FF63 /* AppDelegate.swift in Sources */,
 				3A784FC02862C3330094FF63 /* SceneDelegate.swift in Sources */,
