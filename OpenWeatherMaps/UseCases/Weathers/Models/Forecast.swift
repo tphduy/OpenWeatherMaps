@@ -8,7 +8,7 @@
 import Foundation
 
 /// The expected weather conditions what is judged likely to happen in the future.
-struct Forecast: Codable {
+struct Forecast: Codable, Equatable {
     /// The sunrise time.
     let sunrise: Int?
     /// The sunset time.
@@ -54,7 +54,7 @@ struct Forecast: Codable {
     }
     
     /// An object abstracts the estimated temperature in a day.
-    struct FeelsLike: Codable {
+    struct FeelsLike: Codable, Equatable {
         /// Day temperature.This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
         let day: Double?
         /// Night temperature.This temperature parameter accounts for the human perception of weather. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
@@ -74,7 +74,7 @@ struct Forecast: Codable {
     }
     
     /// An object abstract the weather condition.
-    struct Weather: Codable {
+    struct Weather: Codable, Equatable {
         /// A text that identifies a weather condition in a group of weather parameters (Rain, Snow, Extreme etc.)
         let main: String?
         /// The description of the weather condition within the group.

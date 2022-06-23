@@ -10,7 +10,7 @@ import Foundation
 /// An object abstracts the daily forecasts of a city that will be returned from a remote database.
 ///
 /// References: https://openweathermap.org/forecast16
-struct DailyForecastResponse: Codable {
+struct DailyForecastResponse: Codable, Equatable {
     /// A place where the forecast data was returned from.
     let city: City
     /// A list of daily forecasts.

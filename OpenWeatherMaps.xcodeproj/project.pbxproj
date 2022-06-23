@@ -32,6 +32,7 @@
 		3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */; };
 		3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */; };
 		3A9FD3742864677100134B9A /* DummyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD3732864677100134B9A /* DummyError.swift */; };
+		3A9FD376286469D900134B9A /* DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD375286469D900134B9A /* DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubbedURLProtocol.swift; sourceTree = "<group>"; };
 		3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Stubbed.swift"; sourceTree = "<group>"; };
 		3A9FD3732864677100134B9A /* DummyError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyError.swift; sourceTree = "<group>"; };
+		3A9FD375286469D900134B9A /* DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				3A784FD42862C3350094FF63 /* OpenWeatherMapsTests.swift */,
 				3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */,
 				3A5AE176286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift */,
+				3A9FD375286469D900134B9A /* DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift */,
 			);
 			path = OpenWeatherMapsTests;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */,
 				3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */,
 				3A5AE177286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift in Sources */,
+				3A9FD376286469D900134B9A /* DefaultRemoteWeatherRepository+APIEndpoint+Tests.swift in Sources */,
 				3A784FD52862C3350094FF63 /* OpenWeatherMapsTests.swift in Sources */,
 				3A9FD36D28645C1A00134B9A /* SpyURLRequestBuildable.swift in Sources */,
 				3A5AE1792864572C00DBBC4D /* SpyWebRepository.swift in Sources */,

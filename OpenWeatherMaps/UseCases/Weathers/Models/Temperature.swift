@@ -8,7 +8,7 @@
 import Foundation
 
 /// An object abstracts the measured amount of heat in a place.
-struct Temperature: Codable {
+struct Temperature: Codable, Equatable {
     /// Day temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
     let day: Double?
     /// Night temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.

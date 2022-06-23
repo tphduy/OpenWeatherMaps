@@ -8,7 +8,7 @@
 import Foundation
 
 /// A large human settlement.
-struct City: Codable {
+struct City: Codable, Equatable {
     /// A unique identifier.
     let id: Int
     /// The city name.
