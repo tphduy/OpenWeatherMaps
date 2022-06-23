@@ -44,7 +44,7 @@ final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
         XCTAssertFalse(provider.invokedCall)
         do {
             let _ = try await sut.dailyForecast(keyword: "foo", numberOfDays: 1)
-            XCTExpectFailure("Expected to throw an error.")
+            XCTFail("Expected to throw an error.")
         } catch {
             XCTAssertEqual(error as! DummyError, stubbedError)
         }

@@ -23,12 +23,27 @@ protocol WeatherUseCase {
 
 /// An object that manages the weather data and apply business rules to achive a use case.
 struct DefaultWeatherUseCase: WeatherUseCase {
+    // MARK: Dependencies
+    
+    /// An object provides methods for interacting with the weather data in the remote database.
+    private let remoteWeatherRepository: RemoteWeatherRepository
+    
+    // MARK: Init
+    
+    /// Initiate an object that manages the weather data and apply business rules to achive a use case.
+    /// - Parameter remoteWeatherRepository: An object provides methods for interacting with the weather data in the remote database.
+    init(remoteWeatherRepository: RemoteWeatherRepository = DefaultRemoteWeatherRepository()) {
+        self.remoteWeatherRepository = remoteWeatherRepository
+    }
+    
     // MARK: WeatherUseCase
     
     func dailyForecast(
         keyword: String,
         numberOfDays: Int
     ) async throws  -> DailyForecastResponse {
-        fatalError("not implemented")
+        try await remoteWeatherRepository.dailyForecast(
+            keyword: keyword,
+            numberOfDays: numberOfDays)
     }
 }
