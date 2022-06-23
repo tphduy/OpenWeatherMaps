@@ -162,10 +162,18 @@
 		3A784FFF2862D25A0094FF63 /* Weathers */ = {
 			isa = PBXGroup;
 			children = (
+				3A7850002862D7F20094FF63 /* Repositories */,
 				3A784FF42862CE150094FF63 /* Models */,
 				3A784FEF2862C6E10094FF63 /* WeatherUseCase.swift */,
 			);
 			path = Weathers;
+			sourceTree = "<group>";
+		};
+		3A7850002862D7F20094FF63 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
