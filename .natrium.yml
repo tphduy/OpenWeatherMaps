@@ -1,0 +1,30 @@
+environments:
+  - Development
+  - Staging
+  - Production
+xcconfig:
+    PRODUCT_BUNDLE_IDENTIFIER:
+        Development: dev.tphduy.OpenWeatherMaps.development
+        Staging: dev.tphduy.OpenWeatherMaps.staging
+        Production:
+            Adhoc, Debug: dev.tphduy.OpenWeatherMaps.production
+            Release: dev.tphduy.OpenWeatherMaps
+variables:
+  baseURL:
+    Development, Staging: "https://api.openweathermap.org"
+    Production: "#env(BASE_URL)"
+  appID:
+    Development, Staging: "60c6fbeb4b93ac653c492ba806fc346d"
+    Production: "#env(APP_ID_PRODUCTION)"
+plists:
+    "OpenWeatherMaps/Info.plist":
+        CFBundleDisplayName:
+            Development: OpenWeatherMaps-Development
+            Staging: OpenWeatherMaps-Staging
+            Production: OpenWeatherMaps
+launch_screen_versioning:
+    path: OpenWeatherMaps/Base.lproj/LaunchScreen.storyboard
+    labelName: LaunchScreenVersionLabel
+    enabled:
+        Development, Staging: true
+        Production: false

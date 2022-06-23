@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A5AE16B28644B5200DBBC4D /* Natrium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE16A28644B5200DBBC4D /* Natrium.swift */; };
 		3A784FBE2862C3330094FF63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FBD2862C3330094FF63 /* AppDelegate.swift */; };
 		3A784FC02862C3330094FF63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FBF2862C3330094FF63 /* SceneDelegate.swift */; };
 		3A784FC22862C3330094FF63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FC12862C3330094FF63 /* ViewController.swift */; };
@@ -43,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A5AE1642864468300DBBC4D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		3A5AE1652864468300DBBC4D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3A5AE16A28644B5200DBBC4D /* Natrium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Natrium.swift; path = .natrium/Natrium.swift; sourceTree = "<group>"; };
 		3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A784FBD2862C3330094FF63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A784FBF2862C3330094FF63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				3A784FED2862C6630094FF63 /* OpenWeatherMaps.xctestplan */,
+				3A5AE16A28644B5200DBBC4D /* Natrium.swift */,
 				3A784FBC2862C3330094FF63 /* OpenWeatherMaps */,
 				3A784FD32862C3350094FF63 /* OpenWeatherMapsTests */,
 				3A784FDD2862C3350094FF63 /* OpenWeatherMapsUITests */,
@@ -270,6 +275,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = 3A784FB12862C3330094FF63;
 			packageReferences = (
@@ -326,6 +332,7 @@
 				3A784FFC2862CFEC0094FF63 /* Temperature.swift in Sources */,
 				3A784FF62862CE820094FF63 /* Forecast.swift in Sources */,
 				3A785002286425BF0094FF63 /* RemoteWeatherRepository.swift in Sources */,
+				3A5AE16B28644B5200DBBC4D /* Natrium.swift in Sources */,
 				3A784FFE2862D2480094FF63 /* DailyForecastResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +374,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A784FC42862C3330094FF63 /* Base */,
+				3A5AE1642864468300DBBC4D /* vi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -375,6 +383,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3A784FC92862C3350094FF63 /* Base */,
+				3A5AE1652864468300DBBC4D /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -446,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -506,6 +517,7 @@
 				DEVELOPMENT_TEAM = SL5372659R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWeatherMaps/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OpenWeatherMaps-Development";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -515,7 +527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = tphduy.OpenWeatherMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -534,6 +546,7 @@
 				DEVELOPMENT_TEAM = SL5372659R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OpenWeatherMaps/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OpenWeatherMaps-Development";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -543,7 +556,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = tphduy.OpenWeatherMaps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
