@@ -10,9 +10,9 @@ xcconfig:
             Adhoc, Debug: dev.tphduy.OpenWeatherMaps.production
             Release: dev.tphduy.OpenWeatherMaps
 variables:
-  baseURL:
-    Development, Staging: "https://api.openweathermap.org"
-    Production: "#env(BASE_URL)"
+  openWeatherMapURL:
+      Development, Staging: "https://api.openweathermap.org"
+      Production: "#env(OPEN_WEATHER_MAP_URL)"
   appID:
     Development, Staging: "60c6fbeb4b93ac653c492ba806fc346d"
     Production: "#env(APP_ID_PRODUCTION)"

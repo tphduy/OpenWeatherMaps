@@ -23,6 +23,6 @@ enum Natrium {
         static let environment: Environment = .development
 
         static let appID: String = "60c6fbeb4b93ac653c492ba806fc346d"
-        static let baseURL: String = "https://api.openweathermap.org"
+        static let openWeatherMapURL: String = "https://api.openweathermap.org"
     }
 }

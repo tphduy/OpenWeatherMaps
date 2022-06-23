@@ -9,7 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:OpenWeatherMaps.xcodeproj",
       "identifier" : "3A784FB92862C3330094FF63",
@@ -25,6 +24,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:OpenWeatherMaps.xcodeproj",
         "identifier" : "3A784FD92862C3350094FF63",
