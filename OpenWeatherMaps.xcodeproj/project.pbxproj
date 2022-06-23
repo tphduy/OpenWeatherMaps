@@ -10,6 +10,8 @@
 		3A5AE16B28644B5200DBBC4D /* Natrium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE16A28644B5200DBBC4D /* Natrium.swift */; };
 		3A5AE17328644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE17228644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift */; };
 		3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */; };
+		3A5AE177286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE176286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift */; };
+		3A5AE1792864572C00DBBC4D /* SpyWebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE1782864572C00DBBC4D /* SpyWebRepository.swift */; };
 		3A784FBE2862C3330094FF63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FBD2862C3330094FF63 /* AppDelegate.swift */; };
 		3A784FC02862C3330094FF63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FBF2862C3330094FF63 /* SceneDelegate.swift */; };
 		3A784FC22862C3330094FF63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FC12862C3330094FF63 /* ViewController.swift */; };
@@ -26,6 +28,10 @@
 		3A784FFE2862D2480094FF63 /* DailyForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FFD2862D2480094FF63 /* DailyForecastResponse.swift */; };
 		3A785002286425BF0094FF63 /* RemoteWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A785001286425BF0094FF63 /* RemoteWeatherRepository.swift */; };
 		3A785005286427140094FF63 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A785004286427140094FF63 /* Networkable */; };
+		3A9FD36D28645C1A00134B9A /* SpyURLRequestBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36C28645C1A00134B9A /* SpyURLRequestBuildable.swift */; };
+		3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */; };
+		3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */; };
+		3A9FD3742864677100134B9A /* DummyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD3732864677100134B9A /* DummyError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,8 @@
 		3A5AE16A28644B5200DBBC4D /* Natrium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Natrium.swift; path = .natrium/Natrium.swift; sourceTree = "<group>"; };
 		3A5AE17228644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultWebRepository+OpenWeatherMaps.swift"; sourceTree = "<group>"; };
 		3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultWebRepository+OpenWeatherMaps+Tests.swift"; sourceTree = "<group>"; };
+		3A5AE176286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRemoteWeatherRepositoryTests.swift; sourceTree = "<group>"; };
+		3A5AE1782864572C00DBBC4D /* SpyWebRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyWebRepository.swift; sourceTree = "<group>"; };
 		3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherMaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A784FBD2862C3330094FF63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A784FBF2862C3330094FF63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +79,10 @@
 		3A784FFB2862CFEC0094FF63 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		3A784FFD2862D2480094FF63 /* DailyForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastResponse.swift; sourceTree = "<group>"; };
 		3A785001286425BF0094FF63 /* RemoteWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherRepository.swift; sourceTree = "<group>"; };
+		3A9FD36C28645C1A00134B9A /* SpyURLRequestBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpyURLRequestBuildable.swift; sourceTree = "<group>"; };
+		3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubbedURLProtocol.swift; sourceTree = "<group>"; };
+		3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Stubbed.swift"; sourceTree = "<group>"; };
+		3A9FD3732864677100134B9A /* DummyError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +168,10 @@
 		3A784FD32862C3350094FF63 /* OpenWeatherMapsTests */ = {
 			isa = PBXGroup;
 			children = (
+				3A9FD36B28645A9F00134B9A /* TestDoubles */,
 				3A784FD42862C3350094FF63 /* OpenWeatherMapsTests.swift */,
 				3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */,
+				3A5AE176286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift */,
 			);
 			path = OpenWeatherMapsTests;
 			sourceTree = "<group>";
@@ -206,6 +220,18 @@
 				3A785001286425BF0094FF63 /* RemoteWeatherRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		3A9FD36B28645A9F00134B9A /* TestDoubles */ = {
+			isa = PBXGroup;
+			children = (
+				3A9FD3732864677100134B9A /* DummyError.swift */,
+				3A9FD36C28645C1A00134B9A /* SpyURLRequestBuildable.swift */,
+				3A5AE1782864572C00DBBC4D /* SpyWebRepository.swift */,
+				3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */,
+				3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */,
+			);
+			path = TestDoubles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,7 +391,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */,
+				3A9FD3742864677100134B9A /* DummyError.swift in Sources */,
+				3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */,
+				3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */,
+				3A5AE177286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift in Sources */,
 				3A784FD52862C3350094FF63 /* OpenWeatherMapsTests.swift in Sources */,
+				3A9FD36D28645C1A00134B9A /* SpyURLRequestBuildable.swift in Sources */,
+				3A5AE1792864572C00DBBC4D /* SpyWebRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +744,7 @@
 			repositoryURL = "https://github.com/tphduy/Networkable";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
+				minimumVersion = 1.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
