@@ -22,6 +22,7 @@
 		3A784FFC2862CFEC0094FF63 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FFB2862CFEC0094FF63 /* Temperature.swift */; };
 		3A784FFE2862D2480094FF63 /* DailyForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FFD2862D2480094FF63 /* DailyForecastResponse.swift */; };
 		3A785002286425BF0094FF63 /* RemoteWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A785001286425BF0094FF63 /* RemoteWeatherRepository.swift */; };
+		3A785005286427140094FF63 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A785004286427140094FF63 /* Networkable */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A785005286427140094FF63 /* Networkable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +197,9 @@
 			dependencies = (
 			);
 			name = OpenWeatherMaps;
+			packageProductDependencies = (
+				3A785004286427140094FF63 /* Networkable */,
+			);
 			productName = OpenWeatherMaps;
 			productReference = 3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */;
 			productType = "com.apple.product-type.application";
@@ -267,6 +272,9 @@
 				Base,
 			);
 			mainGroup = 3A784FB12862C3330094FF63;
+			packageReferences = (
+				3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */,
+			);
 			productRefGroup = 3A784FBB2862C3330094FF63 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -660,6 +668,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tphduy/Networkable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A785004286427140094FF63 /* Networkable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */;
+			productName = Networkable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3A784FB22862C3330094FF63 /* Project object */;
 }

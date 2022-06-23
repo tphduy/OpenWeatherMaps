@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "networkable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tphduy/Networkable",
+      "state" : {
+        "revision" : "ed3186e0f470e16ea051764295301005466a9026",
+        "version" : "1.3.0"
+      }
+    }
+  ],
+  "version" : 2
+}
