@@ -17,10 +17,14 @@ extension DefaultWebRepository {
             key: "appid",
             value: Natrium.Config.appID,
             place: .query)
-        let loggingMiddleware = LoggingMiddleware()
         let result = DefaultWebRepository(
             requestBuilder: requestBuilder,
-            middlewares: [authorizationMiddleware, loggingMiddleware])
+            middlewares: [
+                authorizationMiddleware,
+                LocalizationMiddleware(),
+                StatusCodeValidationMiddleware(),
+                LoggingMiddleware(),
+            ])
         return result
     }
 }
