@@ -29,7 +29,10 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     /// A passive object that displays the daily forecasts of a place.
     weak var view: DailyForecastsViewable?
 
-    // MAKR: Misc
+    // MARK: Misc
+    
+    /// A list of forecasts.
+    private var forecasts: [Forecast] = []
 
     // MARK: Init
     
@@ -43,4 +46,18 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     // MARK: DailyForecastsViewable
 
     func viewDidLoad() {}
+    
+    func keywordsDidChange(_ keywords: String?) {}
+    
+    func numberOfSections() -> Int {
+        forecasts.isEmpty ? 0 : 1
+    }
+    
+    func numberOfItems(in section: Int) -> Int {
+        forecasts.count
+    }
+    
+    func item(at indexPath: IndexPath) -> Forecast {
+        forecasts[indexPath.item]
+    }
 }
