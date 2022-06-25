@@ -131,6 +131,8 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
 }
 
+import Combine
+
 extension DailyForecastsViewController: UISearchResultsUpdating {
     // MARK: UISearchResultsUpdating
     

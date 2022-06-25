@@ -38,10 +38,13 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     // MARK: Misc
     
     /// A list of daily forecasts.
-    private var forecasts: [Forecast] = []
+    private(set) var forecasts: [Forecast] = []
     
     /// An asynchronous task that reload all data.
-    private var reloadDataTask: Task<Void, Error>?
+    private(set) var reloadDataTask: Task<Void, Error>?
+    
+    /// An asynchronous task that reload all data after a specific time.
+    private(set) var pendingReloadDatatWorkItem: DispatchWorkItem?
 
     // MARK: Init
     
@@ -74,16 +77,21 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     private func reloadData(withForecasts forecasts: [Forecast]) {
         guard self.forecasts != forecasts else { return }
         self.forecasts = forecasts
-        self.reloadView()
+        reloadView()
     }
     
     /// Ask the view to reload all data.
     ///
     /// This method always invokes the view to reload data on the main thread.
     private func reloadView() {
-        guard let view = view else { return }
-        guard !Thread.isMainThread else { return view.reloadData() }
-        DispatchQueue.main.async(execute: view.reloadData)
+        (view?.reloadData).map(updateLayout(_:))
+    }
+    
+    /// Verify the current thread to make sure the task is always executed on the main thread.
+    /// - Parameter task: A task that updates the layout.
+    private func updateLayout(_ task: @escaping () -> Void) {
+        guard !Thread.isMainThread else { return task() }
+        DispatchQueue.main.async(execute: task)
     }
 
     // MARK: Utilities
@@ -97,8 +105,20 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     }
     
     func keywordsDidChange(_ keywords: String?) {
-        guard let keywords = keywords, !keywords.isEmpty else { return reloadData(withForecasts: []) }
-        reloadData(withKeywords: keywords)
+        // Cancel the currently pending item
+        pendingReloadDatatWorkItem?.cancel()
+        // Wrap a new task in an item.
+        let item = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            // Determine whether the keywords are none or empty to discard the current data.
+            guard let keywords = keywords, !keywords.isEmpty else { return self.reloadData(withForecasts: []) }
+            // Send a new request to reload data with the keywords.
+            self.reloadData(withKeywords: keywords)
+        }
+        // Keep a reference to the pending task for canceling if needed.
+        pendingReloadDatatWorkItem = item
+        // Schedule to execute the task after a specific time.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: item)
     }
     
     func numberOfSections() -> Int {
