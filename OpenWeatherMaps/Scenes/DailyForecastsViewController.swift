@@ -16,6 +16,15 @@ protocol DailyForecastsPresentable: AnyObject {
 /// A passive view controller that displays the daily forecasts of a place.
 final class DailyForecastsViewController: UIViewController, DailyForecastsViewable {
     // MARK: UIs
+    
+    /// A view controller that manages the display of search results based on interactions with a search bar.
+    private(set) lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = NSLocalizedString("A city name", comment: "A search bar placeholder")
+        return controller
+    }()
 
     // MARK: Dependencies
     
@@ -32,13 +41,18 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let presenter = DailyForecastsPresenter()
+        self.presenter = presenter
+        super.init(coder: coder)
+        presenter.view = self
+        presenter.coordinator = self
     }
 
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = searchController
         presenter.viewDidLoad()
     }
     
@@ -47,4 +61,10 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     // MARK: Utilities
 
     // MARK: DailyForecastsViewable
+}
+
+extension DailyForecastsViewController: UISearchResultsUpdating {
+    // MARK: UISearchResultsUpdating
+    
+    func updateSearchResults(for searchController: UISearchController) {}
 }
