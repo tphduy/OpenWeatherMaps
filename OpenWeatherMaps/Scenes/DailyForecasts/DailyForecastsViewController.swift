@@ -76,13 +76,16 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     
     // MARK: Misc
     
-    ///  formatter that converts between dates and their textual representations.
+    /// A formatter that converts between dates and their textual representations.
     private(set) lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .full
         formatter.timeStyle = .none
         return formatter
     }()
+    
+    /// An object helps to Initiate an object helps to make an URL of an image.
+    private(set) lazy var imageURLFactory: ImageURLFactory? = ImageURLFactory()
 
     // MARK: Init
 
@@ -160,7 +163,7 @@ extension DailyForecastsViewController: UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ForecastCollectionViewCell.self), for: indexPath)
         guard let cell = cell as? ForecastCollectionViewCell else { return cell }
         let forecast = presenter.item(at: indexPath)
-        cell.configure(withForecast: forecast, dateFormatter: dateFormatter)
+        cell.configure(withForecast: forecast, dateFormatter: dateFormatter, imageURLFactory: imageURLFactory)
         return cell
     }
 }

@@ -13,6 +13,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
     
     private var forecast: Forecast!
     private var dateFormatter: DateFormatter!
+    private var imageURLFactory: ImageURLFactory!
     private var sut: ForecastCollectionViewCell!
     
     // MARK: Life Cycle
@@ -23,8 +24,12 @@ final class ForecastCollectionViewCellTests: XCTestCase {
             temperature: Temperature(min: 0, max: 10),
             pressure: 1,
             humidity: 1,
-            weather: [Forecast.Weather(main: "Clear", desc: "sky is clear")])
+            weather: [Forecast.Weather(
+                main: "Clear",
+                desc: "sky is clear",
+                icon: "icon")])
         dateFormatter = makeDateFormatter()
+        imageURLFactory = ImageURLFactory(baseURL: "https://foo.bar")
         sut = ForecastCollectionViewCell()
     }
 
@@ -54,7 +59,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
         let descriptionFormat = NSLocalizedString("Description: %@", comment: "Description: %@")
         let description = String(format: descriptionFormat, "sky is clear")
         
-        sut.configure(withForecast: forecast, dateFormatter: dateFormatter)
+        sut.configure(withForecast: forecast, dateFormatter: dateFormatter, imageURLFactory: imageURLFactory)
         
         XCTAssertEqual(sut.dateLabel.text, date)
         XCTAssertFalse(sut.dateLabel.isHidden)
@@ -66,6 +71,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
         XCTAssertFalse(sut.humidityLabel.isHidden)
         XCTAssertEqual(sut.descriptionLabel.text, description)
         XCTAssertFalse(sut.descriptionLabel.isHidden)
+        XCTAssertFalse(sut.iconImageView.isHidden)
     }
     
     func test_configureWithForecast_whenDateIsNone() throws {
@@ -76,7 +82,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
             humidity: nil,
             weather: nil)
         
-        sut.configure(withForecast: forecast, dateFormatter: dateFormatter)
+        sut.configure(withForecast: forecast, dateFormatter: dateFormatter, imageURLFactory: imageURLFactory)
         
         XCTAssertEqual(sut.averageTemperatureLabel.text, "")
         XCTAssertTrue(sut.averageTemperatureLabel.isHidden)
@@ -86,6 +92,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
         XCTAssertTrue(sut.humidityLabel.isHidden)
         XCTAssertEqual(sut.descriptionLabel.text, "")
         XCTAssertTrue(sut.descriptionLabel.isHidden)
+        XCTAssertTrue(sut.iconImageView.isHidden)
     }
     
     func test_configureWithForecast_whenMinimumTemperatureIsNone() throws {
@@ -98,7 +105,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
             humidity: nil,
             weather: nil)
         
-        sut.configure(withForecast: forecast, dateFormatter: dateFormatter)
+        sut.configure(withForecast: forecast, dateFormatter: dateFormatter, imageURLFactory: imageURLFactory)
         
         XCTAssertEqual(sut.averageTemperatureLabel.text, averageTemperature)
         XCTAssertFalse(sut.averageTemperatureLabel.isHidden)

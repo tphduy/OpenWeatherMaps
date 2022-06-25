@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 /// A collection view cell that displays a forecast.
 final class ForecastCollectionViewCell: UICollectionViewCell {
@@ -62,9 +63,16 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    /// An image view that displays an icon of a weather.
+    private(set) lazy var iconImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     /// A horizontal stack view that contains all subviews.
     private(set) lazy var masterStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [leadingStackView])
+        let view = UIStackView(arrangedSubviews: [leadingStackView, iconImageView])
         view.axis = .horizontal
         view.alignment = .center
         view.spacing = 8
@@ -83,12 +91,22 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
+    // MARK: Life Cycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        iconImageView.kf.cancelDownloadTask()
+    }
+    
     // MARK: Side Effects
     
     /// Configure the appearance and the view hierarchy.
     private func setupLayout() {
         contentView.addSubview(masterStackView)
         NSLayoutConstraint.activate([
+            iconImageView.widthAnchor.constraint(equalToConstant: 40),
+            iconImageView.heightAnchor.constraint(equalToConstant: 40),
+            
             masterStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             masterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             masterStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
@@ -100,7 +118,12 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// - Parameters:
     ///   - forecast: The expected weather conditions what is judged likely to happen in the future.
     ///   - dateFormatter: A formatter that converts between dates and their textual representations.
-    func configure(withForecast forecast: Forecast, dateFormatter: DateFormatter) {
+    ///   - imageURLFactory: An object helps to Initiate an object helps to make an URL of an image.
+    func configure(
+        withForecast forecast: Forecast,
+        dateFormatter: DateFormatter,
+        imageURLFactory: ImageURLFactory?
+    ) {
         dateLabel.text = makeDate(forecast: forecast, dateFormatter: dateFormatter)
         averageTemperatureLabel.text = makeAverageTemperature(forecast: forecast)
         pressureLabel.text = makePressure(forecast: forecast)
@@ -109,6 +132,9 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         // Hide all empty labels.
         [dateLabel, averageTemperatureLabel, pressureLabel, humidityLabel, descriptionLabel]
             .forEach { $0.isHidden = $0.text?.isEmpty ?? true }
+        let icon = imageURLFactory.flatMap { makeIcon(forecast: forecast, imageURLFactory: $0) }
+        iconImageView.kf.setImage(with: icon)
+        iconImageView.isHidden = icon == nil
     }
     
     // MARK: Utilities
@@ -165,5 +191,18 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         let format = NSLocalizedString("Description: %@", comment: "Description: %@")
         let result = String(format: format, description)
         return result
+    }
+    
+    /// Make an URL that that identifies the location of an image.
+    /// - Parameters:
+    ///   - forecase: The expected weather conditions what is judged likely to happen in the future.
+    ///   - imageURLFactory: An object helps to Initiate an object helps to make an URL of an image.
+    /// - Returns: A value that identifies the location of an image.
+    private func makeIcon(forecast: Forecast, imageURLFactory: ImageURLFactory) -> URL? {
+        forecast
+            .weather?
+            .first?
+            .icon
+            .flatMap { imageURLFactory.make(name: $0) }
     }
 }

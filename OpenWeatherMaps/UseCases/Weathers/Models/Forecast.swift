@@ -35,11 +35,14 @@ struct Forecast: Codable, Equatable {
         let main: String?
         /// The description of the weather condition within the group.
         let desc: String?
+        /// The name of an image.
+        let icon: String?
 
         /// A type that can be used as a key for encoding and decoding.
         enum CodingKeys: String, CodingKey {
             case main
             case desc = "description"
+            case icon
         }
     }
 }
