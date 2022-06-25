@@ -62,7 +62,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         reloadDataTask?.cancel()
         reloadDataTask = Task {
             do {
-                let result = try await weatherUseCase.dailyForecast(keyword: keywords, numberOfDays: 7)
+                let result = try await weatherUseCase.dailyForecast(keywords: keywords, numberOfDays: 7)
                 let forecasts = result.forecasts
                 reloadData(withForecasts: forecasts)
             } catch {
@@ -77,7 +77,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     private func reloadData(withForecasts forecasts: [Forecast]) {
         guard self.forecasts != forecasts else { return }
         self.forecasts = forecasts
-        reloadView()
+        self.reloadView()
     }
     
     /// Ask the view to reload all data.
@@ -118,7 +118,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         // Keep a reference to the pending task for canceling if needed.
         pendingReloadDatatWorkItem = item
         // Schedule to execute the task after a specific time.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: item)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250), execute: item)
     }
     
     func numberOfSections() -> Int {
