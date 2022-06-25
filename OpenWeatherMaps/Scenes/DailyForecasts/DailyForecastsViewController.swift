@@ -12,6 +12,9 @@ protocol DailyForecastsPresentable: AnyObject {
     /// Notify the view is loaded into memory.
     func viewDidLoad()
     
+    /// Notify the view was removed from a view hierarchy.
+    func viewDidDisappear()
+    
     /// Notify that the keywords did change.
     /// - Parameter keywords: The textual content of the search criteria.
     func keywordsDidChange(_ keywords: String?)
@@ -70,6 +73,16 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     
     /// An object that acts upon the daily forecasts data and the associated view to displays the daily forecasts of a place.
     let presenter: DailyForecastsPresentable
+    
+    // MARK: Misc
+    
+    ///  formatter that converts between dates and their textual representations.
+    private(set) lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .none
+        return formatter
+    }()
 
     // MARK: Init
 
@@ -102,11 +115,20 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         presenter.viewDidLoad()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        presenter.viewDidDisappear()
+    }
+    
     // MARK: Side Effects
 
     // MARK: Utilities
 
     // MARK: DailyForecastsViewable
+    
+    func reloadData() {
+        collectionView.reloadData()
+    }
 }
 
 extension DailyForecastsViewController: UISearchResultsUpdating {
@@ -135,7 +157,8 @@ extension DailyForecastsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ForecastCollectionViewCell.self), for: indexPath)
         guard let cell = cell as? ForecastCollectionViewCell else { return cell }
-        cell.configure(withForecast: presenter.item(at: indexPath))
+        let forecast = presenter.item(at: indexPath)
+        cell.configure(withForecast: forecast, dateFormatter: dateFormatter)
         return cell
     }
 }
