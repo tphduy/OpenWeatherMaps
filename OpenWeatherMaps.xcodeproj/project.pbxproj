@@ -41,6 +41,9 @@
 		3AD401062866F96D00C1451E /* SpyDailyForecastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401052866F96D00C1451E /* SpyDailyForecastsPresenter.swift */; };
 		3AD401082866F99F00C1451E /* SpyDailyForecastsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401072866F99F00C1451E /* SpyDailyForecastsView.swift */; };
 		3AD4010A2866F9E800C1451E /* SpyDailyForecastsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401092866F9E800C1451E /* SpyDailyForecastsCoordinator.swift */; };
+		3AD4010C2866FC9E00C1451E /* Forecast+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4010B2866FC9E00C1451E /* Forecast+Dummy.swift */; };
+		3AD4010E2866FD9400C1451E /* DailyForecastsViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4010D2866FD9400C1451E /* DailyForecastsViewControllerUITests.swift */; };
+		3AD401102866FF4800C1451E /* ForecastCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4010F2866FF4800C1451E /* ForecastCollectionViewCellTests.swift */; };
 		3AD88EC02866D49A00A5316A /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD88EBF2866D49A00A5316A /* Reachability */; };
 		3AD88EC82866D56200A5316A /* DailyForecastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD88EC22866D56200A5316A /* DailyForecastsPresenter.swift */; };
 		3AD88ECB2866D56200A5316A /* DailyForecastsViewController+DailyForecastsCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD88EC52866D56200A5316A /* DailyForecastsViewController+DailyForecastsCoordinating.swift */; };
@@ -108,6 +111,9 @@
 		3AD401052866F96D00C1451E /* SpyDailyForecastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsPresenter.swift; sourceTree = "<group>"; };
 		3AD401072866F99F00C1451E /* SpyDailyForecastsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsView.swift; sourceTree = "<group>"; };
 		3AD401092866F9E800C1451E /* SpyDailyForecastsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsCoordinator.swift; sourceTree = "<group>"; };
+		3AD4010B2866FC9E00C1451E /* Forecast+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forecast+Dummy.swift"; sourceTree = "<group>"; };
+		3AD4010D2866FD9400C1451E /* DailyForecastsViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsViewControllerUITests.swift; sourceTree = "<group>"; };
+		3AD4010F2866FF4800C1451E /* ForecastCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewCellTests.swift; sourceTree = "<group>"; };
 		3AD88EC22866D56200A5316A /* DailyForecastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsPresenter.swift; sourceTree = "<group>"; };
 		3AD88EC52866D56200A5316A /* DailyForecastsViewController+DailyForecastsCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyForecastsViewController+DailyForecastsCoordinating.swift"; sourceTree = "<group>"; };
 		3AD88EC62866D56200A5316A /* DailyForecastsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsBuilder.swift; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 			children = (
 				3A784FDE2862C3350094FF63 /* OpenWeatherMapsUITests.swift */,
 				3A784FE02862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift */,
+				3AD4010D2866FD9400C1451E /* DailyForecastsViewControllerUITests.swift */,
 			);
 			path = OpenWeatherMapsUITests;
 			sourceTree = "<group>";
@@ -270,6 +277,7 @@
 				3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */,
 				3A9FD37928646CF200134B9A /* SpyRemoteWeatherRepository.swift */,
 				3A9FD37B2864881E00134B9A /* DailyForecastResponse+Dummy.swift */,
+				3AD4010B2866FC9E00C1451E /* Forecast+Dummy.swift */,
 			);
 			path = TestDoubles;
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 				3AD401042866F95700C1451E /* TestDoubles */,
 				3AD401002866F8D800C1451E /* DailyForecastsViewControllerTests.swift */,
 				3AD401022866F94400C1451E /* DailyForecastsPresenterTests.swift */,
+				3AD4010F2866FF4800C1451E /* ForecastCollectionViewCellTests.swift */,
 			);
 			path = DailyForcasts;
 			sourceTree = "<group>";
@@ -492,9 +501,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD401012866F8D800C1451E /* DailyForecastsViewControllerTests.swift in Sources */,
+				3AD4010C2866FC9E00C1451E /* Forecast+Dummy.swift in Sources */,
 				3A9FD37A28646CF200134B9A /* SpyRemoteWeatherRepository.swift in Sources */,
 				3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */,
 				3A9FD3742864677100134B9A /* DummyError.swift in Sources */,
+				3AD401102866FF4800C1451E /* ForecastCollectionViewCellTests.swift in Sources */,
 				3A9FD37C2864881E00134B9A /* DailyForecastResponse+Dummy.swift in Sources */,
 				3AD401032866F94400C1451E /* DailyForecastsPresenterTests.swift in Sources */,
 				3A9FD37828646CC000134B9A /* DefaultWeatherUseCaseTests.swift in Sources */,
@@ -517,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A784FE12862C3350094FF63 /* OpenWeatherMapsUITestsLaunchTests.swift in Sources */,
+				3AD4010E2866FD9400C1451E /* DailyForecastsViewControllerUITests.swift in Sources */,
 				3A784FDF2862C3350094FF63 /* OpenWeatherMapsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

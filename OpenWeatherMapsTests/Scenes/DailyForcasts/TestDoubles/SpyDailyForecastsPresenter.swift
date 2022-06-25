@@ -58,7 +58,7 @@ final class SpyDailyForecastsPresenter: DailyForecastsPresentable {
     var invokedItemCount = 0
     var invokedItemParameters: (indexPath: IndexPath, Void)?
     var invokedItemParametersList = [(indexPath: IndexPath, Void)]()
-    var stubbedItemResult: Forecast!
+    var stubbedItemResult: Forecast! = .dummy
 
     func item(at indexPath: IndexPath) -> Forecast {
         invokedItem = true
