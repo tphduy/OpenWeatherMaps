@@ -20,7 +20,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
 
     override func setUpWithError() throws {
         forecast = Forecast(
-            date: Date(),
+            date: Date().timeIntervalSince1970,
             temperature: Temperature(min: 0, max: 10),
             pressure: 1,
             humidity: 1,
@@ -49,7 +49,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
     
     func test_configureWithForecast() throws {
         let dateFormat = NSLocalizedString("Date: %@", comment: "Date: %@")
-        let date = String(format: dateFormat, dateFormatter.string(from: forecast.date))
+        let date = String(format: dateFormat, dateFormatter.string(from: Date(timeIntervalSince1970: forecast.date!)))
         let averageTemperatureFormat = NSLocalizedString("Average Temperature: %d", comment: "Average Temperature: %d")
         let averageTemperature = String(format: averageTemperatureFormat, 5)
         let pressureFormat = NSLocalizedString("Pressure: %d", comment: "Pressure: %d")
@@ -76,7 +76,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
     
     func test_configureWithForecast_whenDateIsNone() throws {
         let forecast = Forecast(
-            date: Date(),
+            date: Date().timeIntervalSince1970,
             temperature: nil,
             pressure: nil,
             humidity: nil,
@@ -99,7 +99,7 @@ final class ForecastCollectionViewCellTests: XCTestCase {
         let format = NSLocalizedString("Average Temperature: %d", comment: "Average Temperature: %d")
         let averageTemperature = String(format: format, 10)
         let forecast = Forecast(
-            date: Date(),
+            date: Date().timeIntervalSince1970,
             temperature: Temperature(min: nil, max: 10),
             pressure: nil,
             humidity: nil,

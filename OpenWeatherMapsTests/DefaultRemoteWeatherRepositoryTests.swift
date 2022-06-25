@@ -29,12 +29,11 @@ final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
     
     // MARK: Test Cases
 
-    /*
     func test_dailyForecast() async throws {
         let response = makeDailyForecastResponse()
         provider.stubbedCallResult = response
         
-        let result = try await sut.dailyForecast(keyword: "foo", numberOfDays: 1)
+        let result = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
         
         XCTAssertTrue(provider.invokedCall)
         XCTAssertEqual(result, response)
@@ -45,7 +44,7 @@ final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
         provider.stubbedCallError = stubbedError
         
         do {
-            let _ = try await sut.dailyForecast(keyword: "foo", numberOfDays: 1)
+            let _ = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
             XCTFail("Expected to throw an error.")
         } catch {
             XCTAssertEqual(error as! DummyError, stubbedError)
@@ -53,7 +52,6 @@ final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
         
         XCTAssertTrue(provider.invokedCall)
     }
-     */
 }
 
 extension DefaultRemoteWeatherRepositoryTests {

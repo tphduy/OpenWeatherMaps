@@ -104,8 +104,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     private func setupLayout() {
         contentView.addSubview(masterStackView)
         NSLayoutConstraint.activate([
-            iconImageView.widthAnchor.constraint(equalToConstant: 40),
-            iconImageView.heightAnchor.constraint(equalToConstant: 40),
+            iconImageView.widthAnchor.constraint(equalToConstant: 60),
+            iconImageView.heightAnchor.constraint(equalToConstant: 60),
             
             masterStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             masterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
@@ -145,7 +145,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     ///   - dateFormatter: A formatter that converts between dates and their textual representations.
     /// - Returns: A localized text.
     private func makeDate(forecast: Forecast, dateFormatter: DateFormatter) -> String {
-        let date = dateFormatter.string(from: forecast.date)
+        guard let timeInterval = forecast.date else { return "" }
+        let date = dateFormatter.string(from: Date(timeIntervalSince1970: timeInterval))
         let format = NSLocalizedString("Date: %@", comment: "Date: %@")
         let result = String(format: format, date)
         return result
@@ -203,6 +204,6 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
             .weather?
             .first?
             .icon
-            .flatMap { imageURLFactory.make(name: $0) }
+            .flatMap { imageURLFactory.make(name: $0, scale: 2) }
     }
 }

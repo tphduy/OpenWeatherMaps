@@ -42,9 +42,7 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
         numberOfDays: Int
     ) async throws -> DailyForecastResponse {
         let endpoint = APIEndpoint.dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .millisecondsSince1970
-        return try await provider.call(to: endpoint, decoder: decoder)
+        return try await provider.call(to: endpoint)
     }
     
     // MARK: Endpoint

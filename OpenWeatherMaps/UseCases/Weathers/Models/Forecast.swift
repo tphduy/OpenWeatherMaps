@@ -9,8 +9,8 @@ import Foundation
 
 /// The expected weather conditions what is judged likely to happen in the future.
 struct Forecast: Codable, Equatable {
-    /// The date that this forecast was publised.
-    let date: Date
+    /// The time interval since 1970 of the date that this forecast was publised.
+    let date: Double?
     /// The measured amount of heat in a place.
     let temperature: Temperature?
     /// The atmospheric pressure on the sea level. Unit default: hPa.
