@@ -17,7 +17,7 @@ struct DailyForecastsBuilder {
     /// - Parameters:
     ///   - listener: An object manages interactions.
     /// - Returns: A view controller.
-    func build(listener: DailyForecastsListener) -> UIViewController {
+    func build(listener: DailyForecastsListener? = nil) -> UIViewController {
         let presenter = DailyForecastsPresenter()
         let viewController = DailyForecastsViewController(presenter: presenter)
         presenter.view = viewController

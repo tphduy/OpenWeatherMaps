@@ -17,6 +17,18 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        (scene as? UIWindowScene)
+            .map(UIWindow.init(windowScene:))
+            .map(bootstrap(from:))
+    }
+    
+    // MARK: Side Effects
+    
+    func bootstrap(from window: UIWindow) {
+        self.window = window
+        let builder = DailyForecastsBuilder()
+        let viewController = builder.build()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window.rootViewController = navigationController
     }
 }
