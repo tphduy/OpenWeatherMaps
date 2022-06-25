@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tphduy/Networkable",
       "state" : {
-        "revision" : "cb9467296833323cb89efc7551539e3684c658cb",
-        "version" : "1.4.0"
+        "revision" : "e19375241110582ece5001acaff008d2e1a2202c",
+        "version" : "1.5.0"
       }
     }
   ],

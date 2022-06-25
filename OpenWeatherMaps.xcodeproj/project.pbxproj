@@ -37,6 +37,7 @@
 		3A9FD37A28646CF200134B9A /* SpyRemoteWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37928646CF200134B9A /* SpyRemoteWeatherRepository.swift */; };
 		3A9FD37C2864881E00134B9A /* DailyForecastResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37B2864881E00134B9A /* DailyForecastResponse+Dummy.swift */; };
 		3A9FD37E28648B1600134B9A /* LocalizationMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37D28648B1600134B9A /* LocalizationMiddleware.swift */; };
+		3AD88EC02866D49A00A5316A /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD88EBF2866D49A00A5316A /* Reachability */; };
 		3AFB97DB28656714009FF630 /* LocalizationMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB97DA28656714009FF630 /* LocalizationMiddlewareTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A785005286427140094FF63 /* Networkable in Frameworks */,
+				3AD88EC02866D49A00A5316A /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +152,7 @@
 				3A784FD32862C3350094FF63 /* OpenWeatherMapsTests */,
 				3A784FDD2862C3350094FF63 /* OpenWeatherMapsUITests */,
 				3A784FBB2862C3330094FF63 /* Products */,
+				3AD88EBE2866D49A00A5316A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,6 +255,13 @@
 			path = TestDoubles;
 			sourceTree = "<group>";
 		};
+		3AD88EBE2866D49A00A5316A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +280,7 @@
 			name = OpenWeatherMaps;
 			packageProductDependencies = (
 				3A785004286427140094FF63 /* Networkable */,
+				3AD88EBF2866D49A00A5316A /* Reachability */,
 			);
 			productName = OpenWeatherMaps;
 			productReference = 3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */;
@@ -768,7 +779,7 @@
 			repositoryURL = "https://github.com/tphduy/Networkable";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
+				minimumVersion = 1.5.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -778,6 +789,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */;
 			productName = Networkable;
+		};
+		3AD88EBF2866D49A00A5316A /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

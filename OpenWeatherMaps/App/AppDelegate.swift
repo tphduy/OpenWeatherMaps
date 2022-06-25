@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        Reachability.shared.bootstrap()
         return true
     }
 
