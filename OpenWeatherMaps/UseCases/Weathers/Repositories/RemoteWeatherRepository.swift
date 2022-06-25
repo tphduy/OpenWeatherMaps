@@ -58,9 +58,10 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
         
         var url: String {
             switch self {
-            case let .dailyForecast(keyword, numberOfDays):
+            case let .dailyForecast(keywords, numberOfDays):
+                let formattedKeywords = keywords.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? keywords
                 return "/data/2.5/forecast/daily?"
-                + "q=\(keyword)"
+                + "q=\(formattedKeywords)"
                 + "&cnt=\(numberOfDays)"
             }
         }

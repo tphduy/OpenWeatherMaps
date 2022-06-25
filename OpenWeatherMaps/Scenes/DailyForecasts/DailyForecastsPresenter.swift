@@ -90,9 +90,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
 
     // MARK: DailyForecastsViewable
 
-    func viewDidLoad() {
-        reloadData(withKeywords: "")
-    }
+    func viewDidLoad() {}
     
     func viewDidDisappear() {
         reloadDataTask?.cancel()

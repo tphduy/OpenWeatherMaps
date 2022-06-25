@@ -17,7 +17,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
     // MARK: Life Cycle
 
     override func setUpWithError() throws {
-        presenter = SpyDailyForecastsPresenter()
+        presenter = makePresenter()
         sut = DailyForecastsViewController(presenter: presenter)
     }
 
@@ -85,5 +85,15 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedItem)
         XCTAssertEqual(presenter.invokedItemParameters?.indexPath, indexPath)
         XCTAssertTrue(result is ForecastCollectionViewCell)
+    }
+}
+
+extension DailyForecastsViewControllerTests {
+    // MARK: Utilities
+    
+    private func makePresenter() -> SpyDailyForecastsPresenter {
+        let result = SpyDailyForecastsPresenter()
+        result.stubbedItemResult = .dummy
+        return result
     }
 }
