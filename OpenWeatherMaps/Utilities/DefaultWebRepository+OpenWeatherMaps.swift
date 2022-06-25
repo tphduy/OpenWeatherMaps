@@ -11,7 +11,7 @@ import Networkable
 extension DefaultWebRepository {
     /// A shared instance that connects to the OpenWeatherMap APIs (https://openweathermap.org).
     static var openWeatherMaps: Self {
-        let baseURL = URL(string: Natrium.Config.openWeatherMapURL)
+        let baseURL = URL(string: Natrium.Config.openWeatherMapAPI)
         let requestBuilder = URLRequestBuilder(baseURL: baseURL)
         let authorizationMiddleware = AuthorizationMiddleware(
             key: "appid",

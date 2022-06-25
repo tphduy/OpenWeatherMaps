@@ -27,7 +27,7 @@ final class DefaultWebRepository_OpenWeatherMaps_Tests: XCTestCase {
     // MARK: Test Cases
     
     func test_init() {
-        XCTAssertEqual(sut.requestBuilder.baseURL, URL(string: Natrium.Config.openWeatherMapURL))
+        XCTAssertEqual(sut.requestBuilder.baseURL, URL(string: Natrium.Config.openWeatherMapAPI))
         XCTAssertTrue(sut.middlewares.contains(where: { $0 is AuthorizationMiddleware }))
         XCTAssertTrue(sut.middlewares.contains(where: { $0 is LocalizationMiddleware }))
         XCTAssertTrue(sut.middlewares.contains(where: { $0 is StatusCodeValidationMiddleware }))
