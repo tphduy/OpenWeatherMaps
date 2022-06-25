@@ -11,6 +11,10 @@ import UIKit
 protocol DailyForecastsPresentable: AnyObject {
     /// Notify the view is loaded into memory.
     func viewDidLoad()
+    
+    /// Notify that the keywords did change.
+    /// - Parameter keywords: The textual content of the search criteria.
+    func keywordsDidChange(_ keywords: String?)
 }
 
 /// A passive view controller that displays the daily forecasts of a place.
@@ -66,5 +70,7 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
 extension DailyForecastsViewController: UISearchResultsUpdating {
     // MARK: UISearchResultsUpdating
     
-    func updateSearchResults(for searchController: UISearchController) {}
+    func updateSearchResults(for searchController: UISearchController) {
+        presenter.keywordsDidChange(searchController.searchBar.text)
+    }
 }
