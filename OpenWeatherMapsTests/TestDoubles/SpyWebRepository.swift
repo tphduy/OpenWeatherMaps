@@ -13,7 +13,7 @@ final class SpyWebRepository: WebRepository {
     var invokedRequestBuilderGetter = false
     var invokedRequestBuilderGetterCount = 0
     var stubbedRequestBuilder: URLRequestBuildable! = {
-        let result = SpyURLRequestBuildable()
+        let result = SpyURLRequestBuilder()
         result.stubbedMakeResult = URLRequest(url: URL(string: "https://foo.bar")!)
         return result
     }()

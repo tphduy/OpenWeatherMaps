@@ -1,5 +1,5 @@
 //
-//  SpyURLRequestBuildable.swift
+//  SpyURLRequestBuilder.swift
 //  NetworkableTests
 //
 //  Created by Duy Tran on 7/13/20.
@@ -8,7 +8,7 @@
 import Foundation
 @testable import Networkable
 
-final class SpyURLRequestBuildable: URLRequestBuildable {
+final class SpyURLRequestBuilder: URLRequestBuildable {
 
     var invokedBaseURLSetter = false
     var invokedBaseURLSetterCount = 0
