@@ -44,6 +44,20 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidLoad)
     }
     
+    // MARK: Test Case - viewDidDisappear()
+    
+    func test_viewDidDisappear() throws {
+        sut.viewDidDisappear(false)
+        
+        XCTAssertTrue(presenter.invokedViewDidDisappear)
+    }
+    
+    // MARK: Test Case - reloadData()
+    
+    func test_reloadData() throws {
+        sut.reloadData()
+    }
+    
     // MARK: Test Case - updateSearchResults(for:)
     
     func test_updateSearchResults() throws {
