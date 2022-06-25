@@ -32,7 +32,7 @@ final class DefaultWeatherUseCaseTests: XCTestCase {
         let response = DailyForecastResponse.dummy
         remoteWeatherRepository.stubbedDailyForecastResult = response
         XCTAssertFalse(remoteWeatherRepository.invokedDailyForecast)
-        let result = try await sut.dailyForecast(keyword: "foo", numberOfDays: 1)
+        let result = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
         XCTAssertTrue(remoteWeatherRepository.invokedDailyForecast)
         XCTAssertEqual(result, response)
     }
@@ -42,7 +42,7 @@ final class DefaultWeatherUseCaseTests: XCTestCase {
         remoteWeatherRepository.stubbedDailyForecastError = stubbedError
         XCTAssertFalse(remoteWeatherRepository.invokedDailyForecast)
         do {
-            let _ = try await sut.dailyForecast(keyword: "foo", numberOfDays: 1)
+            let _ = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
             XCTFail("Expected to throw an error.")
         } catch {
             XCTAssertEqual(error as! DummyError, stubbedError)

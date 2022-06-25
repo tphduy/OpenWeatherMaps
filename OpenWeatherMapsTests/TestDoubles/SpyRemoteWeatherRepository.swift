@@ -12,19 +12,19 @@ final class SpyRemoteWeatherRepository: RemoteWeatherRepository {
     
     var invokedDailyForecast = false
     var invokedDailyForecastCount = 0
-    var invokedDailyForecastParameters: (keyword: String, numberOfDays: Int)?
-    var invokedDailyForecastParametersList = [(keyword: String, numberOfDays: Int)]()
+    var invokedDailyForecastParameters: (keywords: String, numberOfDays: Int)?
+    var invokedDailyForecastParametersList = [(keywords: String, numberOfDays: Int)]()
     var stubbedDailyForecastError: Error?
     var stubbedDailyForecastResult: DailyForecastResponse!
 
     func dailyForecast(
-        keyword: String,
+        keywords: String,
         numberOfDays: Int
     ) async throws -> DailyForecastResponse {
         invokedDailyForecast = true
         invokedDailyForecastCount += 1
-        invokedDailyForecastParameters = (keyword, numberOfDays)
-        invokedDailyForecastParametersList.append((keyword, numberOfDays))
+        invokedDailyForecastParameters = (keywords, numberOfDays)
+        invokedDailyForecastParametersList.append((keywords, numberOfDays))
         if let error = stubbedDailyForecastError { throw error }
         return stubbedDailyForecastResult
     }

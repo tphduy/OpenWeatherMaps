@@ -47,7 +47,7 @@ final class DefaultRemoteWeatherRepository_APIEndpoint_Tests: XCTestCase {
 extension DefaultRemoteWeatherRepository_APIEndpoint_Tests {
     // MARK: Utilities
     
-    private func makeDailyForecast(keyword: String = "foo", numberOfDays: Int = 1) -> DefaultRemoteWeatherRepository.APIEndpoint {
-        .dailyForecast(keyword: keyword, numberOfDays: numberOfDays)
+    private func makeDailyForecast(keywords: String = "foo", numberOfDays: Int = 1) -> DefaultRemoteWeatherRepository.APIEndpoint {
+        .dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
     }
 }
