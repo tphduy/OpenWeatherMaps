@@ -9,6 +9,8 @@ import Foundation
 
 /// The expected weather conditions what is judged likely to happen in the future.
 struct Forecast: Codable, Equatable {
+    /// The date that this forecast was publised.
+    let date: Date
     /// The sunrise time.
     let sunrise: Int?
     /// The sunset time.
@@ -38,6 +40,7 @@ struct Forecast: Codable, Equatable {
 
     /// A type that can be used as a key for encoding and decoding.
     enum CodingKeys: String, CodingKey {
+        case date = "dt"
         case sunrise
         case sunset
         case temperature = "temp"
