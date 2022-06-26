@@ -42,10 +42,18 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
         numberOfDays: Int
     ) async throws -> DailyForecastResponse {
         let endpoint = APIEndpoint.dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
-        return try await provider.call(to: endpoint)
+        do {
+            return try await provider.call(to: endpoint)
+        } catch {
+            let data = (error as? NetworkableError)?.data
+            guard let data = data else { throw error }
+            let decoder = JSONDecoder()
+            guard let result = try? decoder.decode(OpenWeatherMapsError.self, from: data) else { throw error }
+            throw result
+        }
     }
     
-    // MARK: Endpoint
+    // MARK: Endpoint   
     
     /// A type that represents the available API endpoint.
     enum APIEndpoint: Endpoint {

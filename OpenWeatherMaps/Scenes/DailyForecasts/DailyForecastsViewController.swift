@@ -159,6 +159,34 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     func toggleLoading(_ isLoading: Bool) {
         isLoading ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
     }
+    
+    func showLoading() {
+        activityIndicatorView.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityIndicatorView.stopAnimating()
+    }
+    
+    func showError(_ error: Error) {
+        let alert = UIAlertController(
+            
+            title: nil,
+            
+            message: error.localizedDescription,
+            
+            preferredStyle: .alert)
+        let dismiss = UIAlertAction(
+            title: NSLocalizedString("Dismiss", comment: "Alert action"),
+            style: .default)
+        alert.addAction(dismiss)
+        present(alert, animated: true)
+    }
+    
+    func hideError() {
+        guard let alert = presentedViewController as? UIAlertController else { return }
+        alert.dismiss(animated: true)
+    }
 }
 
 import Combine

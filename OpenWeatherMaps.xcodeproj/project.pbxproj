@@ -36,6 +36,7 @@
 		3A9FD37A28646CF200134B9A /* SpyRemoteWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37928646CF200134B9A /* SpyRemoteWeatherRepository.swift */; };
 		3A9FD37C2864881E00134B9A /* DailyForecastResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37B2864881E00134B9A /* DailyForecastResponse+Dummy.swift */; };
 		3A9FD37E28648B1600134B9A /* LocalizationMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD37D28648B1600134B9A /* LocalizationMiddleware.swift */; };
+		3AB1877D2868321800ABC380 /* OpenWeatherMapsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1877C2868321800ABC380 /* OpenWeatherMapsError.swift */; };
 		3AD401012866F8D800C1451E /* DailyForecastsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401002866F8D800C1451E /* DailyForecastsViewControllerTests.swift */; };
 		3AD401032866F94400C1451E /* DailyForecastsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401022866F94400C1451E /* DailyForecastsPresenterTests.swift */; };
 		3AD401062866F96D00C1451E /* SpyDailyForecastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401052866F96D00C1451E /* SpyDailyForecastsPresenter.swift */; };
@@ -110,6 +111,8 @@
 		3A9FD37928646CF200134B9A /* SpyRemoteWeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyRemoteWeatherRepository.swift; sourceTree = "<group>"; };
 		3A9FD37B2864881E00134B9A /* DailyForecastResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyForecastResponse+Dummy.swift"; sourceTree = "<group>"; };
 		3A9FD37D28648B1600134B9A /* LocalizationMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationMiddleware.swift; sourceTree = "<group>"; };
+		3AB1877C2868321800ABC380 /* OpenWeatherMapsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapsError.swift; sourceTree = "<group>"; };
+		3AB1877E286834D900ABC380 /* Networkable */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networkable; path = ../Networkable; sourceTree = "<group>"; };
 		3AD401002866F8D800C1451E /* DailyForecastsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsViewControllerTests.swift; sourceTree = "<group>"; };
 		3AD401022866F94400C1451E /* DailyForecastsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsPresenterTests.swift; sourceTree = "<group>"; };
 		3AD401052866F96D00C1451E /* SpyDailyForecastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsPresenter.swift; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 		3A784FB12862C3330094FF63 = {
 			isa = PBXGroup;
 			children = (
+				3AB1877E286834D900ABC380 /* Networkable */,
 				3A784FED2862C6630094FF63 /* OpenWeatherMaps.xctestplan */,
 				3A5AE16A28644B5200DBBC4D /* Natrium.swift */,
 				3A784FBC2862C3330094FF63 /* OpenWeatherMaps */,
@@ -254,6 +258,7 @@
 				3A784FF72862CEB30094FF63 /* City.swift */,
 				3A784FFB2862CFEC0094FF63 /* Temperature.swift */,
 				3A784FFD2862D2480094FF63 /* DailyForecastResponse.swift */,
+				3AB1877C2868321800ABC380 /* OpenWeatherMapsError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 				3A784FBE2862C3330094FF63 /* AppDelegate.swift in Sources */,
 				3A784FC02862C3330094FF63 /* SceneDelegate.swift in Sources */,
 				3AD88ECC2866D56200A5316A /* DailyForecastsBuilder.swift in Sources */,
+				3AB1877D2868321800ABC380 /* OpenWeatherMapsError.swift in Sources */,
 				3A784FFC2862CFEC0094FF63 /* Temperature.swift in Sources */,
 				3A784FF62862CE820094FF63 /* Forecast.swift in Sources */,
 				3AD88EC82866D56200A5316A /* DailyForecastsPresenter.swift in Sources */,

@@ -1,23 +1,16 @@
 {
-  "pins" : [
-    {
-      "identity" : "kingfisher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher",
-      "state" : {
-        "revision" : "022e4eeb79f817748544b318b991d9a70036bbf8",
-        "version" : "7.2.4"
+  "object": {
+    "pins": [
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher",
+        "state": {
+          "branch": null,
+          "revision": "022e4eeb79f817748544b318b991d9a70036bbf8",
+          "version": "7.2.4"
+        }
       }
-    },
-    {
-      "identity" : "networkable",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/tphduy/Networkable",
-      "state" : {
-        "revision" : "e19375241110582ece5001acaff008d2e1a2202c",
-        "version" : "1.5.0"
-      }
-    }
-  ],
-  "version" : 2
+    ]
+  },
+  "version": 1
 }

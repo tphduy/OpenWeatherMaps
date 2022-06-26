@@ -18,9 +18,18 @@ protocol DailyForecastsViewable: AnyObject {
     /// Reload all data.
     func reloadData()
     
-    /// Show or hide a loading indicator over the current context.
-    /// - Parameter isLoading: Specify `true` to show a loading indicator, `false` to hide.
-    func toggleLoading(_ isLoading: Bool)
+    /// Show  a loading indicator over the current context.
+    func showLoading()
+    
+    /// Hide any showed loading indicator.
+    func hideLoading()
+    
+    /// Show an error over the current context.
+    /// - Parameter error: A type representing an error value.
+    func showError(_ error: Error)
+    
+    /// HIde any showed error.
+    func hideError()
 }
 
 /// An object that acts upon the daily forecasts data and the associated view to display the daily forecasts of a place.
@@ -68,15 +77,17 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     private func reloadData(withKeywords keywords: String) {
         reloadDataTask?.cancel()
         reloadDataTask = Task {
+            updateLayout { [weak view] in view?.hideError() }
             do {
-                updateLayout { [weak self] in self?.view?.toggleLoading(true) }
+                updateLayout { [weak view] in view?.showLoading() }
                 let result = try await weatherUseCase.dailyForecast(keywords: keywords, numberOfDays: 7)
-                updateLayout { [weak self] in self?.view?.toggleLoading(false) }
-                let forecasts = result.forecasts
-                reloadData(withForecasts: forecasts)
+                updateLayout { [weak view] in view?.hideLoading() }
+                reloadData(withForecasts: result.forecasts)
             } catch {
-                // TODO: Ask view to show error.
-                print(error)
+                updateLayout { [weak view] in
+                    view?.hideLoading()
+                    view?.showError(error)
+                }
             }
         }
     }
@@ -86,14 +97,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     private func reloadData(withForecasts forecasts: [Forecast]) {
         guard self.forecasts != forecasts else { return }
         self.forecasts = forecasts
-        self.reloadView()
-    }
-    
-    /// Ask the view to reload all data.
-    ///
-    /// This method always invokes the view to reload data on the main thread.
-    private func reloadView() {
-        (view?.reloadData).map(updateLayout(_:))
+        updateLayout { [weak view] in view?.reloadData() }
     }
     
     /// Verify the current thread to make sure the task is always executed on the main thread.
@@ -114,13 +118,15 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     func keywordsDidChange(_ keywords: String) {
         guard keywords != lastKeywords else { return }
         lastKeywords = keywords
-        // Cancel the currently pending item
+        // Cancel the pending item.
         pendingReloadDatatWorkItem?.cancel()
+        // Cancel the in-progress request.
+        reloadDataTask?.cancel()
         // Wrap a new task in an item.
         let item = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
-            // Determine whether the keywords are none or empty to discard the current data.
-            guard !keywords.isEmpty else { return self.reloadData(withForecasts: []) }
+            // Determine whether the keywords are long enough to send a new request, otherwise, discard the current data.
+            guard keywords.count >= 3 else { return self.reloadData(withForecasts: []) }
             // Send a new request to reload data with the keywords.
             self.reloadData(withKeywords: keywords)
         }
