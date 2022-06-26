@@ -112,7 +112,6 @@
 		3A9FD37B2864881E00134B9A /* DailyForecastResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyForecastResponse+Dummy.swift"; sourceTree = "<group>"; };
 		3A9FD37D28648B1600134B9A /* LocalizationMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationMiddleware.swift; sourceTree = "<group>"; };
 		3AB1877C2868321800ABC380 /* OpenWeatherMapsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapsError.swift; sourceTree = "<group>"; };
-		3AB1877E286834D900ABC380 /* Networkable */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Networkable; path = ../Networkable; sourceTree = "<group>"; };
 		3AD401002866F8D800C1451E /* DailyForecastsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsViewControllerTests.swift; sourceTree = "<group>"; };
 		3AD401022866F94400C1451E /* DailyForecastsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsPresenterTests.swift; sourceTree = "<group>"; };
 		3AD401052866F96D00C1451E /* SpyDailyForecastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsPresenter.swift; sourceTree = "<group>"; };
@@ -182,7 +181,6 @@
 		3A784FB12862C3330094FF63 = {
 			isa = PBXGroup;
 			children = (
-				3AB1877E286834D900ABC380 /* Networkable */,
 				3A784FED2862C6630094FF63 /* OpenWeatherMaps.xctestplan */,
 				3A5AE16A28644B5200DBBC4D /* Natrium.swift */,
 				3A784FBC2862C3330094FF63 /* OpenWeatherMaps */,
@@ -889,7 +887,7 @@
 			repositoryURL = "https://github.com/tphduy/Networkable";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.0;
+				minimumVersion = 1.6.0;
 			};
 		};
 		3AD4011728675A1D00C1451E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {

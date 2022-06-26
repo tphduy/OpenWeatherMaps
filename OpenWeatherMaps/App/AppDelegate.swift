@@ -15,7 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        Reachability.shared.bootstrap()
+        Reachability.shared.start()
         return true
     }
 
