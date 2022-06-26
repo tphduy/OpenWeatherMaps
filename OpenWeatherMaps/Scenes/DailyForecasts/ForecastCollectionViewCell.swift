@@ -15,6 +15,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the date a forecase was publised.
     private(set) lazy var dateLabel: UILabel = {
         let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,6 +24,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the averate temperature of a day.
     private(set) lazy var averageTemperatureLabel: UILabel = {
         let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -29,6 +33,9 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the pressure.
     private(set) lazy var pressureLabel: UILabel = {
         let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
+        view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -36,6 +43,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the humidity.
     private(set) lazy var humidityLabel: UILabel = {
         let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -43,6 +52,8 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the description.
     private(set) lazy var descriptionLabel: UILabel = {
         let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
