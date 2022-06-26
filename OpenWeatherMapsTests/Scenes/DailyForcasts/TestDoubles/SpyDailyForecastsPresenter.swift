@@ -28,10 +28,10 @@ final class SpyDailyForecastsPresenter: DailyForecastsPresentable {
 
     var invokedKeywordsDidChange = false
     var invokedKeywordsDidChangeCount = 0
-    var invokedKeywordsDidChangeParameters: (keywords: String?, Void)?
+    var invokedKeywordsDidChangeParameters: (keywords: String, Void)?
     var invokedKeywordsDidChangeParametersList = [(keywords: String?, Void)]()
 
-    func keywordsDidChange(_ keywords: String?) {
+    func keywordsDidChange(_ keywords: String) {
         invokedKeywordsDidChange = true
         invokedKeywordsDidChangeCount += 1
         invokedKeywordsDidChangeParameters = (keywords, ())

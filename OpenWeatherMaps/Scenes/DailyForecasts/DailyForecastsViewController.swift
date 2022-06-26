@@ -17,7 +17,7 @@ protocol DailyForecastsPresentable: AnyObject {
     
     /// Notify that the keywords did change.
     /// - Parameter keywords: The textual content of the search criteria.
-    func keywordsDidChange(_ keywords: String?)
+    func keywordsDidChange(_ keywords: String)
     
     /// Ask for the number of sections in a list layout.
     /// - Returns: The number of sections in a list layout.
@@ -64,10 +64,14 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         view.dataSource = self
         view.delegate = self
         view.allowsSelection = false
+        view.keyboardDismissMode = .interactive
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ForecastCollectionViewCell.self))
         return view
     }()
+    
+    /// A discrete gesture recognizer that interprets single tap.
+    private(set) lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 
     // MARK: Dependencies
     
@@ -109,6 +113,7 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     override func loadView() {
         super.loadView()
         view.addSubview(collectionView)
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func viewDidLoad() {
@@ -124,8 +129,12 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
     
     // MARK: Side Effects
-
-    // MARK: Utilities
+    
+    /// Triggered whenever the user did tap on this view.
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+        navigationController?.view.endEditing(true)
+    }
 
     // MARK: DailyForecastsViewable
     
@@ -140,7 +149,7 @@ extension DailyForecastsViewController: UISearchResultsUpdating {
     // MARK: UISearchResultsUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
-        presenter.keywordsDidChange(searchController.searchBar.text)
+        presenter.keywordsDidChange(searchController.searchBar.text ?? "")
     }
 }
 

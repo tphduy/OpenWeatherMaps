@@ -40,6 +40,9 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     /// A list of daily forecasts.
     private(set) var forecasts: [Forecast] = []
     
+    /// The last keywords.
+    private(set) var lastKeywords: String = ""
+    
     /// An asynchronous task that reload all data.
     private(set) var reloadDataTask: Task<Void, Error>?
     
@@ -104,21 +107,23 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         reloadDataTask?.cancel()
     }
     
-    func keywordsDidChange(_ keywords: String?) {
+    func keywordsDidChange(_ keywords: String) {
+        guard keywords != lastKeywords else { return }
+        lastKeywords = keywords
         // Cancel the currently pending item
         pendingReloadDatatWorkItem?.cancel()
         // Wrap a new task in an item.
         let item = DispatchWorkItem { [weak self] in
             guard let self = self else { return }
             // Determine whether the keywords are none or empty to discard the current data.
-            guard let keywords = keywords, !keywords.isEmpty else { return self.reloadData(withForecasts: []) }
+            guard !keywords.isEmpty else { return self.reloadData(withForecasts: []) }
             // Send a new request to reload data with the keywords.
             self.reloadData(withKeywords: keywords)
         }
         // Keep a reference to the pending task for canceling if needed.
         pendingReloadDatatWorkItem = item
         // Schedule to execute the task after a specific time.
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250), execute: item)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: item)
     }
     
     func numberOfSections() -> Int {

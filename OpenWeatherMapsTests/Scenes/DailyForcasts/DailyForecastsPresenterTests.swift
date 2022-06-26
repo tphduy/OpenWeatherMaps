@@ -44,42 +44,10 @@ final class DailyForecastsPresenterTests: XCTestCase {
     
     // MARK: Test Case - keywordsDidChange(_:)
     
-    func test_keywordsDidChange_whenInvokedMultipleTime() throws {
-        let expectation = self.expectation(description: "expected the data will reload after a while with the last keyword")
-        
-        XCTAssertNil(sut.pendingReloadDatatWorkItem)
-        
-        sut.keywordsDidChange("foo")
-        
-        XCTAssertNotNil(sut.pendingReloadDatatWorkItem)
-        
-        let lastItem = sut.pendingReloadDatatWorkItem
-        
-        sut.keywordsDidChange("bar")
-        
-        XCTAssertNotNil(sut.pendingReloadDatatWorkItem)
-        XCTAssertNotIdentical(sut.pendingReloadDatatWorkItem, lastItem)
-        
-        sut.pendingReloadDatatWorkItem?.notify(queue: .main) {
-            XCTAssertTrue(self.weatherUseCase.invokedDailyForecast)
-            XCTAssertEqual(self.weatherUseCase.invokedDailyForecastParameters?.keywords, "bar")
-            XCTAssertEqual(self.sut.forecasts, self.weatherUseCase.stubbedDailyForecastResult.forecasts)
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.5)
-    }
-    
-    func test_keywordsDidChange_whenNewValueIsSome() throws {
+    func test_keywordsDidChange_whenNewKeywordsIsDifferentFromLastKeywords() throws {
         let expectation = self.expectation(description: "expected the data will reload after a while")
         
-        XCTAssertNil(sut.pendingReloadDatatWorkItem)
-        XCTAssertNil(sut.reloadDataTask)
-        
         sut.keywordsDidChange("foo")
-        
-        XCTAssertNotNil(sut.pendingReloadDatatWorkItem)
-        XCTAssertNil(sut.reloadDataTask)
         
         sut.pendingReloadDatatWorkItem?.notify(queue: .main) {
             XCTAssertTrue(self.weatherUseCase.invokedDailyForecast)
@@ -88,43 +56,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.5)
-    }
-    
-    func test_keywordsDidChange_whenNewValueIsEmpty() throws {
-        let expectation = self.expectation(description: "expected the data will reload after a while")
-        
-        XCTAssertNil(sut.pendingReloadDatatWorkItem)
-        
-        sut.keywordsDidChange("")
-        
-        XCTAssertNotNil(sut.pendingReloadDatatWorkItem)
-        
-        sut.pendingReloadDatatWorkItem?.notify(queue: .main) {
-            XCTAssertFalse(self.weatherUseCase.invokedDailyForecast)
-            XCTAssertTrue(self.sut.forecasts.isEmpty)
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.5)
-    }
-    
-    func test_keywordsDidChange_whenNewValueIsNone() throws {
-        let expectation = self.expectation(description: "expected the data will reload after a while")
-        
-        XCTAssertNil(sut.pendingReloadDatatWorkItem)
-        
-        sut.keywordsDidChange(nil)
-        
-        XCTAssertNotNil(sut.pendingReloadDatatWorkItem)
-        
-        sut.pendingReloadDatatWorkItem?.notify(queue: .main) {
-            XCTAssertFalse(self.weatherUseCase.invokedDailyForecast)
-            XCTAssertTrue(self.sut.forecasts.isEmpty)
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.5)
+        wait(for: [expectation], timeout: 1)
     }
     
     // MARK: Test Case - numberOfSections()
