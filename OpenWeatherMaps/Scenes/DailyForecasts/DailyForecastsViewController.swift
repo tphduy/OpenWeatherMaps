@@ -64,14 +64,25 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         view.dataSource = self
         view.delegate = self
         view.allowsSelection = false
-        view.keyboardDismissMode = .interactive
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.keyboardDismissMode = .onDrag
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.register(ForecastCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ForecastCollectionViewCell.self))
         return view
     }()
     
+    /// A view that shows that a task is in progress.
+    private(set) lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.hidesWhenStopped = true
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     /// A discrete gesture recognizer that interprets single tap.
-    private(set) lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    private(set) lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(
+        target: self,
+        action: #selector(searchController.searchBar.endEditing))
 
     // MARK: Dependencies
     
@@ -112,8 +123,19 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
 
     override func loadView() {
         super.loadView()
-        view.addSubview(collectionView)
         view.addGestureRecognizer(tapGestureRecognizer)
+        view.addSubview(collectionView)
+        view.addSubview(activityIndicatorView)
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
     }
     
     override func viewDidLoad() {
@@ -127,19 +149,15 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         super.viewDidDisappear(animated)
         presenter.viewDidDisappear()
     }
-    
-    // MARK: Side Effects
-    
-    /// Triggered whenever the user did tap on this view.
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-        navigationController?.view.endEditing(true)
-    }
 
     // MARK: DailyForecastsViewable
     
     func reloadData() {
         collectionView.reloadData()
+    }
+    
+    func toggleLoading(_ isLoading: Bool) {
+        isLoading ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
     }
 }
 

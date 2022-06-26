@@ -17,6 +17,10 @@ protocol DailyForecastsListener: AnyObject {}
 protocol DailyForecastsViewable: AnyObject {
     /// Reload all data.
     func reloadData()
+    
+    /// Show or hide a loading indicator over the current context.
+    /// - Parameter isLoading: Specify `true` to show a loading indicator, `false` to hide.
+    func toggleLoading(_ isLoading: Bool)
 }
 
 /// An object that acts upon the daily forecasts data and the associated view to display the daily forecasts of a place.
@@ -65,7 +69,9 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         reloadDataTask?.cancel()
         reloadDataTask = Task {
             do {
+                updateLayout { [weak self] in self?.view?.toggleLoading(true) }
                 let result = try await weatherUseCase.dailyForecast(keywords: keywords, numberOfDays: 7)
+                updateLayout { [weak self] in self?.view?.toggleLoading(false) }
                 let forecasts = result.forecasts
                 reloadData(withForecasts: forecasts)
             } catch {
@@ -96,8 +102,6 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         guard !Thread.isMainThread else { return task() }
         DispatchQueue.main.async(execute: task)
     }
-
-    // MARK: Utilities
 
     // MARK: DailyForecastsViewable
 
