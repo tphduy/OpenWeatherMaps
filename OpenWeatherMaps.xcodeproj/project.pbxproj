@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0C20BE2868600700A0EEE5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20BD2868600700A0EEE5 /* Kingfisher */; };
+		3A0C20C12868601900A0EEE5 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C02868601900A0EEE5 /* Networkable */; };
+		3A0C20C32868601900A0EEE5 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C22868601900A0EEE5 /* Reachability */; };
 		3A5AE16B28644B5200DBBC4D /* Natrium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE16A28644B5200DBBC4D /* Natrium.swift */; };
 		3A5AE17328644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE17228644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift */; };
 		3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */; };
@@ -26,7 +29,6 @@
 		3A784FFC2862CFEC0094FF63 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FFB2862CFEC0094FF63 /* Temperature.swift */; };
 		3A784FFE2862D2480094FF63 /* DailyForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A784FFD2862D2480094FF63 /* DailyForecastResponse.swift */; };
 		3A785002286425BF0094FF63 /* RemoteWeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A785001286425BF0094FF63 /* RemoteWeatherRepository.swift */; };
-		3A785005286427140094FF63 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A785004286427140094FF63 /* Networkable */; };
 		3A9FD36D28645C1A00134B9A /* SpyURLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36C28645C1A00134B9A /* SpyURLRequestBuilder.swift */; };
 		3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36E28645D5C00134B9A /* StubbedURLProtocol.swift */; };
 		3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FD36F28645D5C00134B9A /* URLSession+Stubbed.swift */; };
@@ -48,8 +50,6 @@
 		3AD40112286725F900C1451E /* SpyWeatherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD40111286725F900C1451E /* SpyWeatherUseCase.swift */; };
 		3AD40114286754DD00C1451E /* ImageURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD40113286754DD00C1451E /* ImageURLBuilder.swift */; };
 		3AD401162867587400C1451E /* ImageURLFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD401152867587400C1451E /* ImageURLFactoryTests.swift */; };
-		3AD4011B28675A3C00C1451E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD4011A28675A3C00C1451E /* Kingfisher */; };
-		3AD88EC02866D49A00A5316A /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD88EBF2866D49A00A5316A /* Reachability */; };
 		3AD88EC82866D56200A5316A /* DailyForecastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD88EC22866D56200A5316A /* DailyForecastsPresenter.swift */; };
 		3AD88ECB2866D56200A5316A /* DailyForecastsViewController+DailyForecastsCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD88EC52866D56200A5316A /* DailyForecastsViewController+DailyForecastsCoordinating.swift */; };
 		3AD88ECC2866D56200A5316A /* DailyForecastsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD88EC62866D56200A5316A /* DailyForecastsBuilder.swift */; };
@@ -136,9 +136,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AD4011B28675A3C00C1451E /* Kingfisher in Frameworks */,
-				3A785005286427140094FF63 /* Networkable in Frameworks */,
-				3AD88EC02866D49A00A5316A /* Reachability in Frameworks */,
+				3A0C20BE2868600700A0EEE5 /* Kingfisher in Frameworks */,
+				3A0C20C32868601900A0EEE5 /* Reachability in Frameworks */,
+				3A0C20C12868601900A0EEE5 /* Networkable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,9 +369,9 @@
 			);
 			name = OpenWeatherMaps;
 			packageProductDependencies = (
-				3A785004286427140094FF63 /* Networkable */,
-				3AD88EBF2866D49A00A5316A /* Reachability */,
-				3AD4011A28675A3C00C1451E /* Kingfisher */,
+				3A0C20BD2868600700A0EEE5 /* Kingfisher */,
+				3A0C20C02868601900A0EEE5 /* Networkable */,
+				3A0C20C22868601900A0EEE5 /* Reachability */,
 			);
 			productName = OpenWeatherMaps;
 			productReference = 3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */;
@@ -447,8 +447,8 @@
 			);
 			mainGroup = 3A784FB12862C3330094FF63;
 			packageReferences = (
-				3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */,
-				3AD4011728675A1D00C1451E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3A0C20BC2868600700A0EEE5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */,
 			);
 			productRefGroup = 3A784FBB2862C3330094FF63 /* Products */;
 			projectDirPath = "";
@@ -882,15 +882,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tphduy/Networkable";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.0;
-			};
-		};
-		3AD4011728675A1D00C1451E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		3A0C20BC2868600700A0EEE5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
@@ -898,22 +890,30 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tphduy/Networkable";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3A785004286427140094FF63 /* Networkable */ = {
+		3A0C20BD2868600700A0EEE5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */;
-			productName = Networkable;
-		};
-		3AD4011A28675A3C00C1451E /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3AD4011728675A1D00C1451E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 3A0C20BC2868600700A0EEE5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		3AD88EBF2866D49A00A5316A /* Reachability */ = {
+		3A0C20C02868601900A0EEE5 /* Networkable */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3A785003286427140094FF63 /* XCRemoteSwiftPackageReference "Networkable" */;
+			package = 3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */;
+			productName = Networkable;
+		};
+		3A0C20C22868601900A0EEE5 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */;
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */

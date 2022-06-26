@@ -129,15 +129,17 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// - Parameters:
     ///   - forecast: The expected weather conditions what is judged likely to happen in the future.
     ///   - dateFormatter: A formatter that converts between dates and their textual representations.
+    ///   - measurementFormatter: A formatter that provides localized representations of units and measurements.
     ///   - imageURLFactory: An object helps to Initiate an object helps to make an URL of an image.
     func configure(
         withForecast forecast: Forecast,
         dateFormatter: DateFormatter,
+        measurementFormatter: MeasurementFormatter,
         imageURLFactory: ImageURLFactory?
     ) {
         dateLabel.text = makeDate(forecast: forecast, dateFormatter: dateFormatter)
-        averageTemperatureLabel.text = makeAverageTemperature(forecast: forecast)
-        pressureLabel.text = makePressure(forecast: forecast)
+        averageTemperatureLabel.text = makeAverageTemperature(forecast: forecast, measurementFormatter: measurementFormatter)
+        pressureLabel.text = makePressure(forecast: forecast, measurementFormatter: measurementFormatter)
         humidityLabel.text = makeHumidity(forecast: forecast)
         descriptionLabel.text = makeDescription(forecast: forecast)
         // Hide all empty labels.
@@ -164,24 +166,32 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     }
     
     /// Make a text that describes the average temperature of forecast.
-    /// - Parameter forecast: The expected weather conditions what is judged likely to happen in the future.
+    /// - Parameters:
+    ///   - forecast: The expected weather conditions what is judged likely to happen in the future.
+    ///   - measurementFormatter: A formatter that provides localized representations of units and measurements.
     /// - Returns: An empty text if the temperature data is none, otherwise, a localized text.
-    private func makeAverageTemperature(forecast: Forecast) -> String {
+    private func makeAverageTemperature(forecast: Forecast, measurementFormatter: MeasurementFormatter) -> String {
         let temperatures = [forecast.temperature?.min, forecast.temperature?.max].compactMap { $0 }
         guard !temperatures.isEmpty else { return "" }
-        let averageTemperature = Int(temperatures.reduce(0, +) / Double(temperatures.count))
-        let format = NSLocalizedString("Average Temperature: %d", comment: "Average Temperature: %d")
-        let result = String(format: format, averageTemperature)
+        let averageTemperature = temperatures.reduce(0, +) / Double(temperatures.count)
+        let measurement = Measurement<UnitTemperature>(value: averageTemperature, unit: .kelvin)
+        let text = measurementFormatter.string(from: measurement)
+        let format = NSLocalizedString("Average Temperature: %@", comment: "Average Temperature: %@")
+        let result = String(format: format, text)
         return result
     }
     
     /// Make a text that describes the pressure of forecast.
-    /// - Parameter forecast: The expected weather conditions what is judged likely to happen in the future.
+    /// - Parameters:
+    ///   - forecast: The expected weather conditions what is judged likely to happen in the future.
+    ///   - measurementFormatter: A formatter that provides localized representations of units and measurements.
     /// - Returns: An empty text if the pressure data is none, otherwise, a localized text.
-    private func makePressure(forecast: Forecast) -> String {
+    private func makePressure(forecast: Forecast, measurementFormatter: MeasurementFormatter) -> String {
         guard let pressure = forecast.pressure else { return "" }
-        let format = NSLocalizedString("Pressure: %d", comment: "Pressure: %d")
-        let result = String(format: format, Int(pressure))
+        let measurement = Measurement<UnitPressure>(value: pressure, unit: .hectopascals)
+        let text = measurementFormatter.string(from: measurement)
+        let format = NSLocalizedString("Pressure: %@", comment: "Pressure: %@")
+        let result = String(format: format, text)
         return result
     }
     
@@ -190,8 +200,9 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// - Returns: An empty text if the humidity data is none, otherwise, a localized text.
     private func makeHumidity(forecast: Forecast) -> String {
         guard let humidity = forecast.humidity else { return "" }
-        let format = NSLocalizedString("Humidity: %d", comment: "Humidity: %d")
-        let result = String(format: format, Int(humidity))
+        let text = "\(Int(humidity))%"
+        let format = NSLocalizedString("Humidity: %@", comment: "Humidity: %@")
+        let result = String(format: format, text)
         return result
     }
     

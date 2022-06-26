@@ -99,6 +99,13 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         return formatter
     }()
     
+    /// A formatter that provides localized representations of units and measurements.
+    private(set) lazy var measurementFormatter: MeasurementFormatter = {
+        let formatter = MeasurementFormatter()
+        formatter.unitStyle = .medium
+        return formatter
+    }()
+    
     /// An object helps to Initiate an object helps to make an URL of an image.
     private(set) lazy var imageURLFactory: ImageURLFactory? = ImageURLFactory()
 
@@ -170,11 +177,8 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     
     func showError(_ error: Error) {
         let alert = UIAlertController(
-            
             title: nil,
-            
             message: error.localizedDescription,
-            
             preferredStyle: .alert)
         let dismiss = UIAlertAction(
             title: NSLocalizedString("Dismiss", comment: "Alert action"),
@@ -218,7 +222,11 @@ extension DailyForecastsViewController: UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ForecastCollectionViewCell.self), for: indexPath)
         guard let cell = cell as? ForecastCollectionViewCell else { return cell }
         let forecast = presenter.item(at: indexPath)
-        cell.configure(withForecast: forecast, dateFormatter: dateFormatter, imageURLFactory: imageURLFactory)
+        cell.configure(
+            withForecast: forecast,
+            dateFormatter: dateFormatter,
+            measurementFormatter: measurementFormatter,
+            imageURLFactory: imageURLFactory)
         return cell
     }
 }
