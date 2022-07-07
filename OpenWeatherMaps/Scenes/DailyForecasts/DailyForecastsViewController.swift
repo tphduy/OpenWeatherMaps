@@ -44,19 +44,19 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         controller.searchResultsUpdater = self
         controller.obscuresBackgroundDuringPresentation = false
         controller.searchBar.placeholder = NSLocalizedString("A city name", comment: "A search bar placeholder")
+        controller.searchBar.accessibilityTraits = .searchField
+        controller.searchBar.accessibilityLabel = "Search"
+        controller.searchBar.isAccessibilityElement = true
         return controller
     }()
     
     /// A layout object that combines items in a list layout.
-    private(set) lazy var collectionViewLayout: UICollectionViewCompositionalLayout = {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }()
+    private(set) lazy var collectionViewLayout = UICollectionViewCompositionalLayout { (_: Int, layoutEnvironment: NSCollectionLayoutEnvironment) in
+        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: layoutEnvironment)
+        section.interGroupSpacing = 8
+        return section
+    }
     
     /// An object that manages an ordered collection of daily forecasts items and presents them using `collectionViewLayout`.
     private(set) lazy var collectionView: UICollectionView = {
@@ -81,7 +81,7 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     
     /// A discrete gesture recognizer that interprets single tap.
     private(set) lazy var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(
-        target: self,
+        target: searchController.searchBar,
         action: #selector(searchController.searchBar.endEditing))
 
     // MARK: Dependencies
@@ -107,7 +107,7 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }()
     
     /// An object helps to Initiate an object helps to make an URL of an image.
-    private(set) lazy var imageURLFactory: ImageURLFactory? = ImageURLFactory()
+    private(set) lazy var imageURLFactory = ImageURLFactory()
 
     // MARK: Init
 
@@ -156,15 +156,16 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         super.viewDidDisappear(animated)
         presenter.viewDidDisappear()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 
     // MARK: DailyForecastsViewable
     
     func reloadData() {
         collectionView.reloadData()
-    }
-    
-    func toggleLoading(_ isLoading: Bool) {
-        isLoading ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
     }
     
     func showLoading() {
@@ -176,20 +177,41 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
     
     func showError(_ error: Error) {
-        let alert = UIAlertController(
-            title: nil,
-            message: error.localizedDescription,
-            preferredStyle: .alert)
-        let dismiss = UIAlertAction(
-            title: NSLocalizedString("Dismiss", comment: "Alert action"),
-            style: .default)
-        alert.addAction(dismiss)
-        present(alert, animated: true)
-    }
-    
-    func hideError() {
-        guard let alert = presentedViewController as? UIAlertController else { return }
-        alert.dismiss(animated: true)
+        let label = UILabel()
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14)
+        label.text = error.localizedDescription
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let containerView = UIView()
+        containerView.layer.masksToBounds = true
+        containerView.layer.cornerRadius = 8
+        containerView.backgroundColor = .systemRed
+        containerView.alpha = 0
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(label)
+        
+        view.addSubview(containerView)
+        NSLayoutConstraint.activate([
+            label.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            label.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            label.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            label.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            
+            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+            containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+        ])
+        
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: { [weak containerView] in
+            containerView?.alpha = 1
+        }, completion: { [weak containerView] (_: Bool) in
+            UIView.animate(withDuration: 0.25, delay: 2, options: .curveEaseOut) {
+                containerView?.alpha = 0
+            } completion: { [weak containerView] (_: Bool) in
+                containerView?.removeFromSuperview()
+            }
+        })
     }
 }
 

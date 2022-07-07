@@ -27,9 +27,6 @@ protocol DailyForecastsViewable: AnyObject {
     /// Show an error over the current context.
     /// - Parameter error: A type representing an error value.
     func showError(_ error: Error)
-    
-    /// HIde any showed error.
-    func hideError()
 }
 
 /// An object that acts upon the daily forecasts data and the associated view to display the daily forecasts of a place.
@@ -77,7 +74,6 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     private func reloadData(withKeywords keywords: String) {
         reloadDataTask?.cancel()
         reloadDataTask = Task {
-            updateLayout { [weak view] in view?.hideError() }
             do {
                 updateLayout { [weak view] in view?.showLoading() }
                 let result = try await weatherUseCase.dailyForecast(keywords: keywords, numberOfDays: 7)
@@ -86,6 +82,8 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
             } catch {
                 updateLayout { [weak view] in
                     view?.hideLoading()
+                    let code = NSError.Code(rawValue: (error as NSError).code)
+                    guard code != .cancelled else { return }
                     view?.showError(error)
                 }
             }
