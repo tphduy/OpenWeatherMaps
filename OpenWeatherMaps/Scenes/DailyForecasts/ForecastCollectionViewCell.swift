@@ -15,6 +15,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the date a forecase was publised.
     private(set) lazy var dateLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +25,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the averate temperature of a day.
     private(set) lazy var averageTemperatureLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,6 +35,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the pressure.
     private(set) lazy var pressureLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.adjustsFontForContentSizeCategory = true
@@ -43,6 +46,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the humidity.
     private(set) lazy var humidityLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +56,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     /// A label that displays the description.
     private(set) lazy var descriptionLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -113,15 +118,26 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
     
     /// Configure the appearance and the view hierarchy.
     private func setupLayout() {
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 8
+        
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 8
+        contentView.backgroundColor = .systemBackground
         contentView.addSubview(masterStackView)
+        
+        /// At the very first moment, the height of this cell will be a fixed value (44), decreasing the priority of the stack view bottom constraint allows the auto-layout engine to break it.
+        let masterStackViewBottomConstraint = masterStackView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+        masterStackViewBottomConstraint.priority = .defaultHigh
+        
         NSLayoutConstraint.activate([
             iconImageView.widthAnchor.constraint(equalToConstant: 60),
             iconImageView.heightAnchor.constraint(equalToConstant: 60),
             
-            masterStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            masterStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            masterStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            masterStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            masterStackView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 8),
+            masterStackView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            masterStackViewBottomConstraint,
+            masterStackView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
         ])
     }
     
