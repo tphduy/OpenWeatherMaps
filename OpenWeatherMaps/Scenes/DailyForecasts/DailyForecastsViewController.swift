@@ -12,6 +12,9 @@ protocol DailyForecastsPresentable: AnyObject {
     /// Notify the view is loaded into memory.
     func viewDidLoad()
     
+    /// Notify the view was added to a view hierarchy.
+    func viewDidAppear()
+    
     /// Notify the view was removed from a view hierarchy.
     func viewDidDisappear()
     
@@ -45,7 +48,7 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         controller.obscuresBackgroundDuringPresentation = false
         controller.searchBar.placeholder = NSLocalizedString("A city name", comment: "A search bar placeholder")
         controller.searchBar.accessibilityTraits = .searchField
-        controller.searchBar.accessibilityLabel = "Search"
+        controller.searchBar.accessibilityLabel = NSLocalizedString("Search city", comment: "A search bar accessibility label")
         controller.searchBar.isAccessibilityElement = true
         return controller
     }()
@@ -152,6 +155,11 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         presenter.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         presenter.viewDidDisappear()
@@ -164,8 +172,14 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
 
     // MARK: DailyForecastsViewable
     
+    func startEditing() {
+        searchController.isActive = true
+        searchController.searchBar.becomeFirstResponder()
+    }
+    
     func reloadData() {
         collectionView.reloadData()
+        UIAccessibility.post(notification: .layoutChanged, argument: nil)
     }
     
     func showLoading() {
@@ -214,8 +228,6 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
         })
     }
 }
-
-import Combine
 
 extension DailyForecastsViewController: UISearchResultsUpdating {
     // MARK: UISearchResultsUpdating

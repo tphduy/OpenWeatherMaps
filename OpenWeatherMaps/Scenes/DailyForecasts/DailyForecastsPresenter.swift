@@ -15,6 +15,9 @@ protocol DailyForecastsListener: AnyObject {}
 
 /// A passive object that displays the daily forecasts of a place.
 protocol DailyForecastsViewable: AnyObject {
+    /// Focus to the search field to start editing.
+    func startEditing()
+    
     /// Reload all data.
     func reloadData()
     
@@ -108,6 +111,10 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     // MARK: DailyForecastsViewable
 
     func viewDidLoad() {}
+    
+    func viewDidAppear() {
+        view?.startEditing()
+    }
     
     func viewDidDisappear() {
         reloadDataTask?.cancel()
