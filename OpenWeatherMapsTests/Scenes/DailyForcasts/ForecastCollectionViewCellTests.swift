@@ -49,6 +49,11 @@ final class ForecastCollectionViewCellTests: XCTestCase {
     func test_setupLayout() throws {
         XCTAssertTrue(sut.masterStackView.isDescendant(of: sut.contentView))
         XCTAssertFalse(sut.masterStackView.constraints.isEmpty)
+        XCTAssertFalse(sut.descriptionLabel.accessibilityLabel!.isEmpty)
+        XCTAssertFalse(sut.descriptionLabel.accessibilityLabel!.isEmpty)
+        XCTAssertFalse(sut.descriptionLabel.accessibilityLabel!.isEmpty)
+        XCTAssertFalse(sut.descriptionLabel.accessibilityLabel!.isEmpty)
+        XCTAssertFalse(sut.descriptionLabel.accessibilityLabel!.isEmpty)
     }
     
     // MARK: Test Case - configure(withForecast:dateFormatter:measurementFormatter:imageURLFactory)

@@ -19,6 +19,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityLabel = NSLocalizedString("Date", comment: "An accessibility label")
         return view
     }()
     
@@ -29,6 +30,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityLabel = NSLocalizedString("Average temperature", comment: "An accessibility label")
         return view
     }()
     
@@ -40,6 +42,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         view.adjustsFontForContentSizeCategory = true
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityLabel = NSLocalizedString("Pressure", comment: "An accessibility label")
         return view
     }()
     
@@ -50,6 +53,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityLabel = NSLocalizedString("Humidity", comment: "An accessibility label")
         return view
     }()
     
@@ -60,6 +64,7 @@ final class ForecastCollectionViewCell: UICollectionViewCell {
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityLabel = NSLocalizedString("Weather", comment: "An accessibility label")
         return view
     }()
     
