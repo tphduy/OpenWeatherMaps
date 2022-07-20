@@ -52,6 +52,36 @@ final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
         
         XCTAssertTrue(provider.invokedCall)
     }
+    
+    func test_dailyForecast_whenThrowingNetworkableError_andDataIsEmpty() async throws {
+        let stubbedError = NetworkableError.unacceptableStatusCode(makeResponse(), Data())
+        provider.stubbedCallError = stubbedError
+        
+        do {
+            let _ = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
+            XCTFail("Expected to throw an error.")
+        } catch {
+            XCTAssertEqual(error as! NetworkableError, stubbedError)
+        }
+        
+        XCTAssertTrue(provider.invokedCall)
+    }
+    
+    func test_dailyForecast_whenThrowingNetworkableError_andDataIsParsableToOpenWeatherMapsError() async throws {
+        let underlyingError = OpenWeatherMapsError(message: "foo")
+        let data = try! JSONEncoder().encode(underlyingError)
+        let stubbedError = NetworkableError.unacceptableStatusCode(makeResponse(), data)
+        provider.stubbedCallError = stubbedError
+        
+        do {
+            let _ = try await sut.dailyForecast(keywords: "foo", numberOfDays: 1)
+            XCTFail("Expected to throw an error.")
+        } catch {
+            XCTAssertEqual(error as! OpenWeatherMapsError, underlyingError)
+        }
+        
+        XCTAssertTrue(provider.invokedCall)
+    }
 }
 
 extension DefaultRemoteWeatherRepositoryTests {
@@ -69,5 +99,13 @@ extension DefaultRemoteWeatherRepositoryTests {
         DailyForecastResponse(
             city: makeCity(),
             forecasts: [])
+    }
+    
+    private func makeResponse() -> HTTPURLResponse {
+        HTTPURLResponse(
+            url: URL(string: "https://foo.bar")!,
+            statusCode: 200,
+            httpVersion: nil,
+            headerFields: nil)!
     }
 }
