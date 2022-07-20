@@ -10,7 +10,7 @@ import Kingfisher
 
 /// A collection view cell that displays a forecast.
 final class ForecastCollectionViewCell: UICollectionViewCell {
-    // MARK: Uis
+    // MARK: UIs
     
     /// A label that displays the date a forecase was publised.
     private(set) lazy var dateLabel: UILabel = {
