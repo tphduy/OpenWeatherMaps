@@ -191,41 +191,74 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
     
     func showError(_ error: Error) {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        label.text = error.localizedDescription
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        let containerView = UIView()
-        containerView.layer.masksToBounds = true
-        containerView.layer.cornerRadius = 8
-        containerView.backgroundColor = .systemRed
-        containerView.alpha = 0
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(label)
-        
-        view.addSubview(containerView)
+        let content = makeErrorView(error: error)
+        let toast = makeToastView(content: content, backgroundColor: .systemRed)
+        showToast(toast, in: view)
+    }
+    
+    // MARK: Utilities
+    
+    /// Show a toast view in a container view for a specific time interval.
+    /// - Parameters:
+    ///   - toast: A view that displays a toast.
+    ///   - containerView: The view that will contains the toast view.
+    ///   - visibleTime: The time interval that the toast will be visible before being removed. The default value is `2`.
+    ///   - animationDuration: The duration of the appearing animation and  the disappearing animation. The default value is `0.25`.
+    private func showToast(
+        _ toast: UIView,
+        in containerView: UIView,
+        for visibleTime: TimeInterval = 2,
+        withAnimationDuration animationDuration: TimeInterval = 0.25
+    ) {
+        containerView.addSubview(toast)
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 8),
-            label.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            label.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            label.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-            
-            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
-            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
-            containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            toast.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            toast.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
+            toast.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
         ])
-        
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseOut, animations: { [weak containerView] in
-            containerView?.alpha = 1
-        }, completion: { [weak containerView] (_: Bool) in
-            UIView.animate(withDuration: 0.25, delay: 2, options: .curveEaseOut) {
-                containerView?.alpha = 0
-            } completion: { [weak containerView] (_: Bool) in
-                containerView?.removeFromSuperview()
+        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: { [weak toast] in
+            toast?.alpha = 1
+        }, completion: { [weak toast] (_: Bool) in
+            UIView.animate(withDuration: animationDuration, delay: visibleTime, options: .curveEaseOut) {
+                toast?.alpha = 0
+            } completion: { [weak toast] (_: Bool) in
+                toast?.removeFromSuperview()
             }
         })
+    }
+    
+    /// Make a view that displays an error.
+    /// - Parameter error: A type representing an error value that can be thrown.
+    /// - Returns: An instance of `UILabel`.
+    private func makeErrorView(error: Error) -> UILabel {
+        let view = UILabel()
+        view.textColor = .white
+        view.font = .systemFont(ofSize: 14)
+        view.text = error.localizedDescription
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    /// Make a view that wraps a content view within as a toast.
+    /// - Parameters:
+    ///   - content: A view that displays the content of a toast.
+    ///   - backgroundColor: The background color of the toast.
+    /// - Returns: An instance of `UIView`.
+    private func makeToastView(content: UIView, backgroundColor: UIColor) -> UIView {
+        let toast = UIView()
+        toast.layer.masksToBounds = true
+        toast.layer.cornerRadius = 8
+        toast.backgroundColor = backgroundColor
+        toast.alpha = 0
+        toast.translatesAutoresizingMaskIntoConstraints = false
+        toast.addSubview(content)
+        NSLayoutConstraint.activate([
+            content.topAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.topAnchor, constant: 8),
+            content.leadingAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            content.bottomAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            content.trailingAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+        ])
+        return toast
     }
 }
 
