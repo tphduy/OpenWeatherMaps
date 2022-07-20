@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A0C20BE2868600700A0EEE5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20BD2868600700A0EEE5 /* Kingfisher */; };
 		3A0C20C12868601900A0EEE5 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C02868601900A0EEE5 /* Networkable */; };
-		3A0C20C32868601900A0EEE5 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C22868601900A0EEE5 /* Reachability */; };
 		3A42D40D288860AE00E192E4 /* DailyForecastsBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42D40C288860AE00E192E4 /* DailyForecastsBuilderTests.swift */; };
 		3A42D40F2888617D00E192E4 /* SpyDailyForecastsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42D40E2888617D00E192E4 /* SpyDailyForecastsListener.swift */; };
 		3A42D41328886E8200E192E4 /* OpenWeatherMapsErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42D41228886E8200E192E4 /* OpenWeatherMapsErrorTests.swift */; };
@@ -147,7 +146,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0C20BE2868600700A0EEE5 /* Kingfisher in Frameworks */,
-				3A0C20C32868601900A0EEE5 /* Reachability in Frameworks */,
 				3A0C20C12868601900A0EEE5 /* Networkable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,7 +384,6 @@
 			packageProductDependencies = (
 				3A0C20BD2868600700A0EEE5 /* Kingfisher */,
 				3A0C20C02868601900A0EEE5 /* Networkable */,
-				3A0C20C22868601900A0EEE5 /* Reachability */,
 			);
 			productName = OpenWeatherMaps;
 			productReference = 3A784FBA2862C3330094FF63 /* OpenWeatherMaps.app */;
@@ -930,11 +927,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */;
 			productName = Networkable;
-		};
-		3A0C20C22868601900A0EEE5 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A0C20BF2868601900A0EEE5 /* XCRemoteSwiftPackageReference "Networkable" */;
-			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
