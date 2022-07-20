@@ -37,7 +37,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     // MARK: Dependencies
     
     /// An object that manages the weather data and apply business rules to achive a use case.
-    private let weatherUseCase: WeatherUseCase
+    let weatherUseCase: WeatherUseCase
 
     /// An object that takes responsibility for routing through the app.
     weak var coordinator: DailyForecastsCoordinating?

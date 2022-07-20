@@ -10,6 +10,8 @@
 		3A0C20BE2868600700A0EEE5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20BD2868600700A0EEE5 /* Kingfisher */; };
 		3A0C20C12868601900A0EEE5 /* Networkable in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C02868601900A0EEE5 /* Networkable */; };
 		3A0C20C32868601900A0EEE5 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 3A0C20C22868601900A0EEE5 /* Reachability */; };
+		3A42D40D288860AE00E192E4 /* DailyForecastsBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42D40C288860AE00E192E4 /* DailyForecastsBuilderTests.swift */; };
+		3A42D40F2888617D00E192E4 /* SpyDailyForecastsListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A42D40E2888617D00E192E4 /* SpyDailyForecastsListener.swift */; };
 		3A5AE16B28644B5200DBBC4D /* Natrium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE16A28644B5200DBBC4D /* Natrium.swift */; };
 		3A5AE17328644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE17228644F4500DBBC4D /* DefaultWebRepository+OpenWeatherMaps.swift */; };
 		3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AE174286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift */; };
@@ -77,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A42D40C288860AE00E192E4 /* DailyForecastsBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastsBuilderTests.swift; sourceTree = "<group>"; };
+		3A42D40E2888617D00E192E4 /* SpyDailyForecastsListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyDailyForecastsListener.swift; sourceTree = "<group>"; };
 		3A5AE1642864468300DBBC4D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
 		3A5AE1652864468300DBBC4D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3A5AE16A28644B5200DBBC4D /* Natrium.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Natrium.swift; path = .natrium/Natrium.swift; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 				3AD401002866F8D800C1451E /* DailyForecastsViewControllerTests.swift */,
 				3AD401022866F94400C1451E /* DailyForecastsPresenterTests.swift */,
 				3AD4010F2866FF4800C1451E /* ForecastCollectionViewCellTests.swift */,
+				3A42D40C288860AE00E192E4 /* DailyForecastsBuilderTests.swift */,
 			);
 			path = DailyForcasts;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				3AD401072866F99F00C1451E /* SpyDailyForecastsView.swift */,
 				3AD401092866F9E800C1451E /* SpyDailyForecastsCoordinator.swift */,
 				3AD40111286725F900C1451E /* SpyWeatherUseCase.swift */,
+				3A42D40E2888617D00E192E4 /* SpyDailyForecastsListener.swift */,
 			);
 			path = TestDoubles;
 			sourceTree = "<group>";
@@ -523,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AD401012866F8D800C1451E /* DailyForecastsViewControllerTests.swift in Sources */,
+				3A42D40F2888617D00E192E4 /* SpyDailyForecastsListener.swift in Sources */,
 				3AD4010C2866FC9E00C1451E /* Forecast+Dummy.swift in Sources */,
 				3A9FD37A28646CF200134B9A /* SpyRemoteWeatherRepository.swift in Sources */,
 				3A5AE175286450C200DBBC4D /* DefaultWebRepository+OpenWeatherMaps+Tests.swift in Sources */,
@@ -534,6 +541,7 @@
 				3A9FD37828646CC000134B9A /* DefaultWeatherUseCaseTests.swift in Sources */,
 				3A9FD37028645D5C00134B9A /* StubbedURLProtocol.swift in Sources */,
 				3AD401062866F96D00C1451E /* SpyDailyForecastsPresenter.swift in Sources */,
+				3A42D40D288860AE00E192E4 /* DailyForecastsBuilderTests.swift in Sources */,
 				3A9FD37128645D5C00134B9A /* URLSession+Stubbed.swift in Sources */,
 				3AD4010A2866F9E800C1451E /* SpyDailyForecastsCoordinator.swift in Sources */,
 				3A5AE177286456F500DBBC4D /* DefaultRemoteWeatherRepositoryTests.swift in Sources */,

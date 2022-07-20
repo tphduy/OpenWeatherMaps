@@ -18,6 +18,14 @@ final class SpyDailyForecastsPresenter: DailyForecastsPresentable {
         invokedViewDidLoadCount += 1
     }
 
+    var invokedViewDidAppear = false
+    var invokedViewDidAppearCount = 0
+
+    func viewDidAppear() {
+        invokedViewDidAppear = true
+        invokedViewDidAppearCount += 1
+    }
+
     var invokedViewDidDisappear = false
     var invokedViewDidDisappearCount = 0
 
@@ -29,7 +37,7 @@ final class SpyDailyForecastsPresenter: DailyForecastsPresentable {
     var invokedKeywordsDidChange = false
     var invokedKeywordsDidChangeCount = 0
     var invokedKeywordsDidChangeParameters: (keywords: String, Void)?
-    var invokedKeywordsDidChangeParametersList = [(keywords: String?, Void)]()
+    var invokedKeywordsDidChangeParametersList = [(keywords: String, Void)]()
 
     func keywordsDidChange(_ keywords: String) {
         invokedKeywordsDidChange = true

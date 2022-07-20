@@ -10,6 +10,14 @@ import Foundation
 
 final class SpyDailyForecastsView: DailyForecastsViewable {
 
+    var invokedStartEditing = false
+    var invokedStartEditingCount = 0
+
+    func startEditing() {
+        invokedStartEditing = true
+        invokedStartEditingCount += 1
+    }
+
     var invokedReloadData = false
     var invokedReloadDataCount = 0
 
@@ -44,13 +52,5 @@ final class SpyDailyForecastsView: DailyForecastsViewable {
         invokedShowErrorCount += 1
         invokedShowErrorParameters = (error, ())
         invokedShowErrorParametersList.append((error, ()))
-    }
-
-    var invokedHideError = false
-    var invokedHideErrorCount = 0
-
-    func hideError() {
-        invokedHideError = true
-        invokedHideErrorCount += 1
     }
 }
