@@ -3,19 +3,18 @@
 //  OpenWeatherMaps
 //
 //  Created by Duy Tran on 22/06/2022.
-//
 
 import UIKit
-import Reachability
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
+    // MARK: UIApplicationDelegate
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        return true
+        true
     }
 
     // MARK: UISceneSession Lifecycle

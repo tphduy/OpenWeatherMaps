@@ -12,8 +12,8 @@ import Networkable
 final class DefaultRemoteWeatherRepositoryTests: XCTestCase {
     // MARK: Misc
     
-    var provider: SpyWebRepository!
-    var sut: DefaultRemoteWeatherRepository!
+    private var provider: SpyWebRepository!
+    private var sut: DefaultRemoteWeatherRepository!
     
     // MARK: Life Cycle
     

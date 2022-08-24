@@ -12,7 +12,7 @@ import Networkable
 final class DefaultRemoteWeatherRepository_APIEndpoint_Tests: XCTestCase {
     // MARK: Misc
     
-    var sut: DefaultRemoteWeatherRepository.APIEndpoint!
+    private var sut: DefaultRemoteWeatherRepository.APIEndpoint!
     
     // MARK: Life Cycle
 
