@@ -38,7 +38,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     
     /// An object that manages the weather data and apply business rules to achive a use case.
     let weatherUseCase: WeatherUseCase
-
+    
     /// An object that takes responsibility for routing through the app.
     weak var coordinator: DailyForecastsCoordinating?
 
@@ -49,6 +49,11 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     weak var view: DailyForecastsViewable?
 
     // MARK: Misc
+    
+    /// An object that temporarily stores transient key-value pairs that are subject to eviction when resources are low or expired.
+    ///
+    /// Cached data will be expired if locale or preferred language is changed, but the application will be reloaded so we don't have to mind about that.
+    let cache = Cache<String, [Forecast]>()
     
     /// A list of daily forecasts.
     private(set) var forecasts: [Forecast] = []
@@ -65,22 +70,39 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
     // MARK: Init
     
     /// Initiate a presenter that acts upon the daily forecasts data and the associated view to display the daily forecasts of a place.
-    /// - Parameter weatherUseCase: An object that manages the weather data and apply business rules to achive a use case. The default value is an instance of `DefaultWeatherUseCase`
-    init(weatherUseCase: WeatherUseCase = DefaultWeatherUseCase()) {
+    /// - Parameters:
+    ///   - weatherUseCase: An object that manages the weather data and apply business rules to achive a use case. The default value is an instance of `DefaultWeatherUseCase`
+    ///   - forecasts: A list of daily forecasts. The default value is empty.
+    init(
+        weatherUseCase: WeatherUseCase = DefaultWeatherUseCase(),
+        forecasts: [Forecast] = []
+    ) {
         self.weatherUseCase = weatherUseCase
+        self.forecasts = forecasts
+    }
+    
+    // MARK: Deinit
+    
+    deinit {
+        reloadDataTask?.cancel()
     }
 
     // MARK: Side Effects
     
     /// Reload all data with a new search criteria.
     /// - Parameter keywords: The textual content of the search criteria.
-    private func reloadData(withKeywords keywords: String) {
+    func reloadData(withKeywords keywords: String) {
+        if let cached = cache.value(forKey: keywords) {
+            return reloadData(withForecasts: cached)
+        }
+        
         reloadDataTask?.cancel()
         reloadDataTask = Task {
             do {
                 updateLayout { [weak view] in view?.showLoading() }
                 let result = try await weatherUseCase.dailyForecast(keywords: keywords, numberOfDays: 7)
                 updateLayout { [weak view] in view?.hideLoading() }
+                cache.insert(result.forecasts, forKey: keywords)
                 reloadData(withForecasts: result.forecasts)
             } catch {
                 updateLayout { [weak view] in
@@ -107,18 +129,22 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         guard !Thread.isMainThread else { return task() }
         DispatchQueue.main.async(execute: task)
     }
+    
+    /// Ask the view to start editing if the current data is empty.
+    private func startEditingIfNeeded() {
+        guard forecasts.isEmpty else { return }
+        view?.startEditing()
+    }
 
     // MARK: DailyForecastsViewable
 
     func viewDidLoad() {}
     
     func viewDidAppear() {
-        view?.startEditing()
+        startEditingIfNeeded()
     }
     
-    func viewDidDisappear() {
-        reloadDataTask?.cancel()
-    }
+    func viewDidDisappear() {}
     
     func keywordsDidChange(_ keywords: String) {
         guard keywords != lastKeywords else { return }
