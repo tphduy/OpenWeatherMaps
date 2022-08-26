@@ -58,7 +58,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         XCTAssertNotNil(sut.reloadDataTask)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned weatherUseCase, unowned view, unowned sut] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned weatherUseCase, unowned view, unowned sut] in
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastCount, 1)
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastParameters!.keywords, keywords)
             
@@ -75,7 +75,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
             cacheExpectation.fulfill()
         }
         
-        wait(for: [reloadDataExpectation, presentationExpectation, cacheExpectation], timeout: 0.1)
+        wait(for: [reloadDataExpectation, presentationExpectation, cacheExpectation], timeout: 1)
     }
     
     func test_reloadDataWithKeywords_whenCacheIsMissed_andReloadedDataIsDifferent() throws {
@@ -90,7 +90,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         XCTAssertNotNil(sut.reloadDataTask)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned weatherUseCase, unowned view, unowned sut] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned weatherUseCase, unowned view, unowned sut] in
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastCount, 1)
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastParameters!.keywords, keywords)
             
@@ -107,7 +107,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
             cacheExpectation.fulfill()
         }
         
-        wait(for: [reloadDataExpectation, presentationExpectation, cacheExpectation], timeout: 0.1)
+        wait(for: [reloadDataExpectation, presentationExpectation, cacheExpectation], timeout: 1)
     }
     
     func test_reloadDataWithKeywords_whenCacheIsMissed_andEncounterError() throws {
@@ -123,7 +123,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         XCTAssertNotNil(sut.reloadDataTask)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned weatherUseCase, unowned view] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned weatherUseCase, unowned view] in
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastCount, 1)
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastParameters!.keywords, keywords)
             
@@ -136,7 +136,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
             presentationExpectation.fulfill()
         }
         
-        wait(for: [reloadDataExpectation, presentationExpectation], timeout: 0.1)
+        wait(for: [reloadDataExpectation, presentationExpectation], timeout: 1)
     }
     
     func test_reloadDataWithKeywords_whenCacheIsMissed_andEncounterError_becauseTaskWasCancelled() throws {
@@ -154,7 +154,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         sut.reloadDataTask?.cancel()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned weatherUseCase, unowned view] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned weatherUseCase, unowned view] in
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastCount, 1)
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastParameters!.keywords, keywords)
             
@@ -167,7 +167,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
             presentationExpectation.fulfill()
         }
         
-        wait(for: [reloadDataExpectation, presentationExpectation], timeout: 0.1)
+        wait(for: [reloadDataExpectation, presentationExpectation], timeout: 1)
     }
     
     func test_reloadDataWithKeywords_whenCacheIsHit_andCacheDataIsTheSame() throws {
@@ -182,12 +182,12 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         XCTAssertNil(sut.reloadDataTask)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned view] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned view] in
             XCTAssertFalse(view!.invokedReloadData)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
     
     func test_reloadDataWithKeywords_whenCacheIsHit_andCacheDataIsDifferent() throws {
@@ -203,29 +203,29 @@ final class DailyForecastsPresenterTests: XCTestCase {
         
         XCTAssertNil(sut.reloadDataTask)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [unowned view, unowned sut] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { [unowned view, unowned sut] in
             XCTAssertTrue(view!.invokedReloadData)
             XCTAssertEqual(sut!.forecasts, forecasts)
             expectation.fulfill()
         }
         
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1)
     }
     
     // MARK: Test Case - viewDidLoad()
-    
+
     func test_viewDidLoad() throws {
         XCTAssertNoThrow(sut.viewDidLoad())
     }
-    
+
     // MARK: Test Case - viewDidAppear()
-    
+
     func test_viewDidAppear_whenDataIsEmpty() throws {
         sut.viewDidAppear()
-        
+
         XCTAssertTrue(view.invokedStartEditing)
     }
-    
+
     func test_viewDidAppear_whenDataIsSome() throws {
         sut = DailyForecastsPresenter(weatherUseCase: weatherUseCase, forecasts: [.dummy])
 
@@ -284,27 +284,27 @@ final class DailyForecastsPresenterTests: XCTestCase {
         let expectation = self.expectation(description: "expected the data will be reload after a while")
         let firstKeywords = "foo"
         let secondKeywords = "bar"
-        
+
         XCTAssertNotEqual(sut.lastKeywords, firstKeywords)
-        
+
         sut.keywordsDidChange(firstKeywords)
-        
+
         XCTAssertEqual(sut.lastKeywords, firstKeywords)
-        
+
         let pendingReloadDatatWorkItem = sut.pendingReloadDatatWorkItem
-        
+
         sut.keywordsDidChange(secondKeywords)
-        
+
         XCTAssertEqual(sut.lastKeywords, secondKeywords)
-        
+
         XCTAssertNotIdentical(sut.pendingReloadDatatWorkItem, pendingReloadDatatWorkItem)
-        
+
         sut.pendingReloadDatatWorkItem?.notify(queue: .main) { [unowned weatherUseCase] in
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastCount, 1)
             XCTAssertEqual(weatherUseCase!.invokedDailyForecastParameters?.keywords, secondKeywords)
             expectation.fulfill()
         }
-        
+
         wait(for: [expectation], timeout: 1)
     }
     
@@ -316,6 +316,7 @@ final class DailyForecastsPresenterTests: XCTestCase {
     
     func test_numberOfSections_whenDataIsSome() throws {
         sut = DailyForecastsPresenter(weatherUseCase: weatherUseCase, forecasts: [.dummy])
+        
         XCTAssertEqual(sut.numberOfSections(), 1)
     }
     

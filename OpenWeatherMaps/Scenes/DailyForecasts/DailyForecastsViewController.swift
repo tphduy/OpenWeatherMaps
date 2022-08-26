@@ -277,7 +277,10 @@ extension DailyForecastsViewController: UICollectionViewDataSource {
         presenter.numberOfSections()
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         presenter.numberOfItems(in: section)
     }
 }
@@ -285,7 +288,10 @@ extension DailyForecastsViewController: UICollectionViewDataSource {
 extension DailyForecastsViewController: UICollectionViewDelegate {
     // MARK: UICollectionViewDelegate
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ForecastCollectionViewCell.self), for: indexPath)
         guard let cell = cell as? ForecastCollectionViewCell else { return cell }
         let forecast = presenter.item(at: indexPath)

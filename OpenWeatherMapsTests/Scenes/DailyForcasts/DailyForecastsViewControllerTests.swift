@@ -19,6 +19,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
     override func setUpWithError() throws {
         presenter = makePresenter()
         sut = DailyForecastsViewController(presenter: presenter)
+        sut.loadViewIfNeeded()
     }
 
     override func tearDownWithError() throws {
@@ -32,6 +33,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         sut.loadView()
         
         XCTAssertTrue(sut.collectionView.isDescendant(of: sut.view))
+        XCTAssertTrue(sut.activityIndicatorView.isDescendant(of: sut.view))
     }
     
     // MARK: Test Case - viewDidLoad()
@@ -44,6 +46,14 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidLoad)
     }
     
+    // MARK: Test Case - viewDidAppear()
+    
+    func test_viewDidAppear() throws {
+        sut.viewDidAppear(false)
+        
+        XCTAssertTrue(presenter.invokedViewDidAppear)
+    }
+    
     // MARK: Test Case - viewDidDisappear()
     
     func test_viewDidDisappear() throws {
@@ -52,16 +62,20 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidDisappear)
     }
     
-    // MARK: Test Case - reloadData()
-    
-    func test_reloadData() throws {
-        sut.reloadData()
-    }
-    
     // MARK: Test Case - updateSearchResults(for:)
     
-    func test_updateSearchResults() throws {
-        let keywords = "foo bar"
+    func test_updateSearchResults_whenKeywordsAreNone() throws {
+        sut.searchController.searchBar.text = nil
+        
+        sut.updateSearchResults(for: sut.searchController)
+        
+        XCTAssertTrue(presenter.invokedKeywordsDidChange)
+        XCTAssertEqual(presenter.invokedKeywordsDidChangeParameters?.keywords, "")
+    }
+    
+    func test_updateSearchResults_whenKeywordsAreSome() throws {
+        let keywords: String? = "foo"
+        
         sut.searchController.searchBar.text = keywords
         
         sut.updateSearchResults(for: sut.searchController)
@@ -70,7 +84,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertEqual(presenter.invokedKeywordsDidChangeParameters?.keywords, keywords)
     }
     
-    // MARK: Test Case - numberOfSections(in:) {
+    // MARK: Test Case - numberOfSections(in:)
     
     func test_numberOfSections() throws {
         let result = sut.numberOfSections(in: sut.collectionView)
@@ -82,22 +96,20 @@ final class DailyForecastsViewControllerTests: XCTestCase {
     // MARK: Test Case - collectionView(_:numberOfItemsInSection:)
     
     func test_numberOfItemsInSection() throws {
-        let section = 0
-        let result = sut.collectionView(sut.collectionView, numberOfItemsInSection: section)
+        let result = sut.collectionView(sut.collectionView, numberOfItemsInSection: 0)
         
         XCTAssertTrue(presenter.invokedNumberOfItems)
-        XCTAssertEqual(presenter.invokedNumberOfItemsParameters?.section, section)
-        XCTAssertEqual(presenter.stubbedNumberOfItemsResult, result)
+        XCTAssertEqual(result, presenter.stubbedNumberOfItemsResult)
     }
     
-    // MARK: Test Case - collectionView(_:cellForItemAt:)
-    
     func test_cellForItemAtIndexPath() throws {
+        presenter.stubbedNumberOfSectionsResult = 1
+        presenter.stubbedNumberOfItemsResult = 1
+        presenter.stubbedItemResult = .dummy
+        
         let indexPath = IndexPath(item: 0, section: 0)
         let result = sut.collectionView(sut.collectionView, cellForItemAt: indexPath)
         
-        XCTAssertTrue(presenter.invokedItem)
-        XCTAssertEqual(presenter.invokedItemParameters?.indexPath, indexPath)
         XCTAssertTrue(result is ForecastCollectionViewCell)
     }
 }

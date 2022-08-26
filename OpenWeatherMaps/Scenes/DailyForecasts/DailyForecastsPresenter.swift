@@ -154,7 +154,7 @@ final class DailyForecastsPresenter: DailyForecastsPresentable {
         // Cancel the in-progress request.
         reloadDataTask?.cancel()
         // Wrap a new task in an item.
-        let item = DispatchWorkItem { [weak self] in
+        let item = DispatchWorkItem(qos: .userInteractive) { [weak self] in
             guard let self = self else { return }
             // Determine whether the keywords are long enough to send a new request, otherwise, discard the current data.
             guard keywords.count >= 3 else { return self.reloadData(withForecasts: []) }
