@@ -25,14 +25,14 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
     // MARK: Dependencies
     
     /// An ad-hoc network layer built on `URLSession` to perform an HTTP request.
-    private let provider: WebRepository
+    private let session: NetworkableSession
     
     // MARK: Init
     
     /// Initiate an object provides methods for interacting with the weather data in the remote database.
-    /// - Parameter provider: An ad-hoc network layer built on `URLSession` to perform an HTTP request. The default value is `.openWeatherMaps`.
-    init(provider: WebRepository = DefaultWebRepository.openWeatherMaps) {
-        self.provider = provider
+    /// - Parameter provider: An ad-hoc network layer built on `URLSession` to perform an HTTP request. The default value is `NetworkSession.openWeatherMaps`.
+    init(session: NetworkableSession = NetworkSession.openWeatherMaps) {
+        self.session = session
     }
     
     // MARK: RemoteWeatherRepository
@@ -41,14 +41,17 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
         keywords: String,
         numberOfDays: Int
     ) async throws -> DailyForecastResponse {
-        let endpoint = APIEndpoint.dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
+        let request = API.dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
+        let decoder = JSONDecoder()
         do {
-            return try await provider.call(to: endpoint)
+            return try await session.data(for: request, decoder: decoder)
         } catch {
-            let data = (error as? NetworkableError)?.data
-            guard let data = data else { throw error }
-            let decoder = JSONDecoder()
-            guard let result = try? decoder.decode(OpenWeatherMapsError.self, from: data) else { throw error }
+            guard
+                let data = (error as? NetworkableError)?.data,
+                let result = try? decoder.decode(OpenWeatherMapsError.self, from: data)
+            else {
+                throw error
+            }
             throw result
         }
     }
@@ -56,7 +59,7 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
     // MARK: Endpoint   
     
     /// A type that represents the available API endpoint.
-    enum APIEndpoint: Endpoint {
+    enum API: Request {
         /// Get the daily forecast of a place.
         case dailyForecast(keywords: String, numberOfDays: Int)
         

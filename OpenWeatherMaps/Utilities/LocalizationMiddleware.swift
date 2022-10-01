@@ -42,6 +42,8 @@ struct LocalizationMiddleware: Middleware {
     
     func didReceive(response: URLResponse, data: Data) throws {}
     
+    func didReceive(error: Error, of request: URLRequest) {}
+    
     // MARK: Side Effects
     
     /// Append the localization headers to a request.
