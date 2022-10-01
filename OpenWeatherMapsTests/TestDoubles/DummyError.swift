@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct DummyError: Swift.Error, Equatable {
-    let uuid = UUID()
+struct DummyError: Error, Equatable, Codable {
+    var uuid = UUID()
 }

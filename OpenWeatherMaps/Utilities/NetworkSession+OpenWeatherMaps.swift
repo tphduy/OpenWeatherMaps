@@ -17,12 +17,12 @@ extension NetworkSession {
             key: "appid",
             value: Natrium.Config.appID,
             place: .query)
-        let loggingMiddleware = LoggingMiddleware(log: .networking)
         let middlewares: [Middleware] = [
             authorizationMiddleware,
             LocalizationMiddleware(),
+            LoggingMiddleware(log: .networking),
+            ErrorDecoderMiddleware<OpenWeatherMapsError>(),
             StatusCodeValidationMiddleware(),
-            loggingMiddleware,
         ]
         let result = NetworkSession(
             requestBuilder: requestBuilder,

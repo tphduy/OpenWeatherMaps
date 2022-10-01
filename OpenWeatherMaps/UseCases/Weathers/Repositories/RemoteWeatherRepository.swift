@@ -42,18 +42,7 @@ struct DefaultRemoteWeatherRepository: RemoteWeatherRepository {
         numberOfDays: Int
     ) async throws -> DailyForecastResponse {
         let request = API.dailyForecast(keywords: keywords, numberOfDays: numberOfDays)
-        let decoder = JSONDecoder()
-        do {
-            return try await session.data(for: request, decoder: decoder)
-        } catch {
-            guard
-                let data = (error as? NetworkableError)?.data,
-                let result = try? decoder.decode(OpenWeatherMapsError.self, from: data)
-            else {
-                throw error
-            }
-            throw result
-        }
+        return try await session.data(for: request, decoder: JSONDecoder())
     }
     
     // MARK: Endpoint   

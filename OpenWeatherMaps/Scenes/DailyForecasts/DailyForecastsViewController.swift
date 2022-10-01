@@ -229,7 +229,8 @@ extension DailyForecastsViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ForecastCollectionViewCell.self), for: indexPath)
+        let identifier = String(describing: ForecastCollectionViewCell.self)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         guard let cell = cell as? ForecastCollectionViewCell else { return cell }
         let forecast = presenter.item(at: indexPath)
         cell.configure(

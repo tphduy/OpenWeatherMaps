@@ -2,14 +2,14 @@
 //  SpyRemoteWeatherRepository.swift
 //  OpenWeatherMapsTests
 //
-//  Created by Duy Tran on 23/06/2022.
+//  Created by Duy Trần on 01/10/2022.
 //
 
 import Foundation
 @testable import OpenWeatherMaps
 
 final class SpyRemoteWeatherRepository: RemoteWeatherRepository {
-    
+
     var invokedDailyForecast = false
     var invokedDailyForecastCount = 0
     var invokedDailyForecastParameters: (keywords: String, numberOfDays: Int)?
@@ -25,7 +25,9 @@ final class SpyRemoteWeatherRepository: RemoteWeatherRepository {
         invokedDailyForecastCount += 1
         invokedDailyForecastParameters = (keywords, numberOfDays)
         invokedDailyForecastParametersList.append((keywords, numberOfDays))
-        if let error = stubbedDailyForecastError { throw error }
+        if let error = stubbedDailyForecastError {
+            throw error
+        }
         return stubbedDailyForecastResult
     }
 }

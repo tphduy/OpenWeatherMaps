@@ -35,6 +35,7 @@ final class DailyForecastsBuilderTests: XCTestCase {
     func test_build() throws {
         let viewController = sut.build(listener: listener) as! DailyForecastsViewController
         let presenter = viewController.presenter as! DailyForecastsPresenter
+        
         XCTAssertIdentical(presenter.view, viewController)
         XCTAssertIdentical(presenter.coordinator, viewController)
         XCTAssertIdentical(presenter.listener, listener)

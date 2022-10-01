@@ -27,7 +27,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         sut = nil
     }
     
-    // MARK: Test Case - loadView()
+    // MARK: Test Cases - loadView()
     
     func test_loadView() throws {
         sut.loadView()
@@ -36,7 +36,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.activityIndicatorView.isDescendant(of: sut.view))
     }
     
-    // MARK: Test Case - viewDidLoad()
+    // MARK: Test Cases - viewDidLoad()
     
     func test_viewDidLoad() throws {
         sut.viewDidLoad()
@@ -46,7 +46,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidLoad)
     }
     
-    // MARK: Test Case - viewDidAppear()
+    // MARK: Test Cases - viewDidAppear()
     
     func test_viewDidAppear() throws {
         sut.viewDidAppear(false)
@@ -54,7 +54,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidAppear)
     }
     
-    // MARK: Test Case - viewDidDisappear()
+    // MARK: Test Cases - viewDidDisappear()
     
     func test_viewDidDisappear() throws {
         sut.viewDidDisappear(false)
@@ -62,7 +62,56 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertTrue(presenter.invokedViewDidDisappear)
     }
     
-    // MARK: Test Case - updateSearchResults(for:)
+    // MARK: Test Cases - startEditing()
+    
+    func test_startEditing() throws {
+        sut.startEditing()
+    }
+    
+    // MARK: Test Cases - reloadData()
+    
+    func test_reloadData() throws {
+        sut.reloadData()
+    }
+    
+    // MARK: Test Cases - showLoading()
+    
+    func test_showLoading() throws {
+        XCTAssertTrue(sut.activityIndicatorView.isHidden)
+        XCTAssertFalse(sut.activityIndicatorView.isAnimating)
+        
+        sut.showLoading()
+        
+        XCTAssertFalse(sut.activityIndicatorView.isHidden)
+        XCTAssertTrue(sut.activityIndicatorView.isAnimating)
+    }
+    
+    // MARK: Test Cases - showLoading()
+    
+    func test_hideLoading() throws {
+        sut.showLoading()
+        
+        XCTAssertFalse(sut.activityIndicatorView.isHidden)
+        XCTAssertTrue(sut.activityIndicatorView.isAnimating)
+        
+        sut.hideLoading()
+        
+        XCTAssertTrue(sut.activityIndicatorView.isHidden)
+        XCTAssertFalse(sut.activityIndicatorView.isAnimating)
+    }
+    
+    // MARK: Test Cases - showError(_:)
+    
+    func test_showError() throws {
+        let error = DummyError()
+        let top = sut.view.subviews.last!
+        
+        sut.showError(error)
+        
+        XCTAssertNotIdentical(sut.view.subviews.last!, top)
+    }
+    
+    // MARK: Test Cases - updateSearchResults(for:)
     
     func test_updateSearchResults_whenKeywordsAreNone() throws {
         sut.searchController.searchBar.text = nil
@@ -84,7 +133,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertEqual(presenter.invokedKeywordsDidChangeParameters?.keywords, keywords)
     }
     
-    // MARK: Test Case - numberOfSections(in:)
+    // MARK: Test Cases - numberOfSections(in:)
     
     func test_numberOfSections() throws {
         let result = sut.numberOfSections(in: sut.collectionView)
@@ -93,7 +142,7 @@ final class DailyForecastsViewControllerTests: XCTestCase {
         XCTAssertEqual(result, presenter.stubbedNumberOfItemsResult)
     }
     
-    // MARK: Test Case - collectionView(_:numberOfItemsInSection:)
+    // MARK: Test Cases - collectionView(_:numberOfItemsInSection:)
     
     func test_numberOfItemsInSection() throws {
         let result = sut.collectionView(sut.collectionView, numberOfItemsInSection: 0)

@@ -110,6 +110,12 @@ final class LocalizationMiddlewareTests: XCTestCase {
     func test_didReceiveResponse() throws {
         XCTAssertNoThrow(try sut.didReceive(response: response, data: Data()))
     }
+    
+    // MARK: Test Cases - didReceive(error:of)
+    
+    func test_didReceiveError() throws {
+        sut.didReceive(error: DummyError(), of: request)
+    }
 }
 
 extension LocalizationMiddlewareTests {

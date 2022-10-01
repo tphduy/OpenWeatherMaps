@@ -24,7 +24,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     // MARK: Side Effects
     
-    func bootstrap(from window: UIWindow) {
+    /// Sets up the root view controller and appearance then shows the window and makes it the key window.
+    /// - Parameter window: The backdrop for your app’s user interface and the object that dispatches events to your views.
+    private func bootstrap(from window: UIWindow) {
         self.window = window
         let builder = DailyForecastsBuilder()
         let viewController = builder.build()

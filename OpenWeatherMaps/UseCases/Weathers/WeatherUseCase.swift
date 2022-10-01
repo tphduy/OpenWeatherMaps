@@ -41,7 +41,7 @@ struct DefaultWeatherUseCase: WeatherUseCase {
     func dailyForecast(
         keywords: String,
         numberOfDays: Int
-    ) async throws  -> DailyForecastResponse {
+    ) async throws -> DailyForecastResponse {
         try await remoteWeatherRepository.dailyForecast(
             keywords: keywords,
             numberOfDays: numberOfDays)
