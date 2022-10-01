@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 /// An object that acts upon the daily forecasts data and the associated view to displays the daily forecasts of a place.
 protocol DailyForecastsPresentable: AnyObject {
@@ -191,74 +192,10 @@ final class DailyForecastsViewController: UIViewController, DailyForecastsViewab
     }
     
     func showError(_ error: Error) {
-        let content = makeErrorView(error: error)
-        let toast = makeToastView(content: content, backgroundColor: .systemRed)
-        showToast(toast, in: view)
-    }
-    
-    // MARK: Utilities
-    
-    /// Show a toast view in a container view for a specific time interval.
-    /// - Parameters:
-    ///   - toast: A view that displays a toast.
-    ///   - containerView: The view that will contains the toast view.
-    ///   - visibleTime: The time interval that the toast will be visible before being removed. The default value is `2`.
-    ///   - animationDuration: The duration of the appearing animation and  the disappearing animation. The default value is `0.25`.
-    private func showToast(
-        _ toast: UIView,
-        in containerView: UIView,
-        for visibleTime: TimeInterval = 2,
-        withAnimationDuration animationDuration: TimeInterval = 0.25
-    ) {
-        containerView.addSubview(toast)
-        NSLayoutConstraint.activate([
-            toast.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
-            toast.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -32),
-            toast.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
-        ])
-        UIView.animate(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: { [weak toast] in
-            toast?.alpha = 1
-        }, completion: { [weak toast] (_: Bool) in
-            UIView.animate(withDuration: animationDuration, delay: visibleTime, options: .curveEaseOut) {
-                toast?.alpha = 0
-            } completion: { [weak toast] (_: Bool) in
-                toast?.removeFromSuperview()
-            }
-        })
-    }
-    
-    /// Make a view that displays an error.
-    /// - Parameter error: A type representing an error value that can be thrown.
-    /// - Returns: An instance of `UILabel`.
-    private func makeErrorView(error: Error) -> UILabel {
-        let view = UILabel()
-        view.textColor = .white
-        view.font = .systemFont(ofSize: 14)
-        view.text = error.localizedDescription
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }
-    
-    /// Make a view that wraps a content view within as a toast.
-    /// - Parameters:
-    ///   - content: A view that displays the content of a toast.
-    ///   - backgroundColor: The background color of the toast.
-    /// - Returns: An instance of `UIView`.
-    private func makeToastView(content: UIView, backgroundColor: UIColor) -> UIView {
-        let toast = UIView()
-        toast.layer.masksToBounds = true
-        toast.layer.cornerRadius = 8
-        toast.backgroundColor = backgroundColor
-        toast.alpha = 0
-        toast.translatesAutoresizingMaskIntoConstraints = false
-        toast.addSubview(content)
-        NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.topAnchor, constant: 8),
-            content.leadingAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            content.bottomAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            content.trailingAnchor.constraint(equalTo: toast.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-        ])
-        return toast
+        let title = error.localizedDescription
+        let config = ToastConfiguration(attachTo: view)
+        let toast = Toast.text(title, config: config)
+        toast.show(haptic: .error)
     }
 }
 

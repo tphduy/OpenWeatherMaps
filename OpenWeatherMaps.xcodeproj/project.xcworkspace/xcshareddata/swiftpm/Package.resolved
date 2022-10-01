@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "022e4eeb79f817748544b318b991d9a70036bbf8",
-        "version" : "7.2.4"
+        "revision" : "be1a1acb283a702b99b630f586877ba02234b4cb",
+        "version" : "7.3.2"
       }
     },
     {
@@ -15,7 +15,16 @@
       "location" : "https://github.com/tphduy/Networkable",
       "state" : {
         "branch" : "master",
-        "revision" : "5f968a3200f6b7d497c4111005ff23e8843097f5"
+        "revision" : "5fcb3c6c97ff5ec289bf5d8616272c91ed26afeb"
+      }
+    },
+    {
+      "identity" : "toast-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BastiaanJansen/toast-swift",
+      "state" : {
+        "revision" : "3435ac78bbcbc6ac066882191d7550415a03f53a",
+        "version" : "1.1.0"
       }
     }
   ],
