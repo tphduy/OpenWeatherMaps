@@ -64,6 +64,7 @@
 		3AD974282872E3AF003CBCB5 /* NSError+Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD974272872E3AF003CBCB5 /* NSError+Code.swift */; };
 		3ADA8F6128B5DC8700CB0501 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA8F6028B5DC8700CB0501 /* AppDelegateTests.swift */; };
 		3AFB97DB28656714009FF630 /* LocalizationMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB97DA28656714009FF630 /* LocalizationMiddlewareTests.swift */; };
+		96DAA9992910CCF8005CE8A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96DAA99B2910CCF8005CE8A4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		3AD974272872E3AF003CBCB5 /* NSError+Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Code.swift"; sourceTree = "<group>"; };
 		3ADA8F6028B5DC8700CB0501 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		3AFB97DA28656714009FF630 /* LocalizationMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationMiddlewareTests.swift; sourceTree = "<group>"; };
+		96DAA99A2910CCF8005CE8A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		96DAA99C2910CCFA005CE8A4 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +243,7 @@
 				3AD88EC12866D51A00A5316A /* Scenes */,
 				3A784FEE2862C6D20094FF63 /* UseCases */,
 				3A5AE16F28644EA000DBBC4D /* Utilities */,
+				96DAA99B2910CCF8005CE8A4 /* Localizable.strings */,
 			);
 			path = OpenWeatherMaps;
 			sourceTree = "<group>";
@@ -500,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A784FCA2862C3350094FF63 /* LaunchScreen.storyboard in Resources */,
+				96DAA9992910CCF8005CE8A4 /* Localizable.strings in Resources */,
 				3A784FC72862C3350094FF63 /* Assets.xcassets in Resources */,
 				3A784FC52862C3330094FF63 /* Main.storyboard in Resources */,
 			);
@@ -626,6 +631,15 @@
 				3A5AE1652864468300DBBC4D /* vi */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		96DAA99B2910CCF8005CE8A4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96DAA99A2910CCF8005CE8A4 /* en */,
+				96DAA99C2910CCFA005CE8A4 /* vi */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
